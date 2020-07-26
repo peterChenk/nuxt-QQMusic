@@ -1,5 +1,6 @@
 <template>
   <div>
+    <mod-header></mod-header>
     <Nuxt />
   </div>
 </template>

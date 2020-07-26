@@ -1,0 +1,32 @@
+.main,
+.section_inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.sprite,
+.sprite_before:before {
+  background-image: url(../img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3);
+  // background-image: -webkit-image-set(url(../img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3) 1x, url(../img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b) 2x)
+}
+
+.icon_history_clear,
+.search_history__icon_delete {
+  background-image: url(../img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3);
+  // background-image: -webkit-image-set(url(img/icon_sprite.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3) 1x,url(img/icon_sprite@2x.png?max_age=2592000&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=85678e8f28c7b4bcad5c209b21b7e3b3&v=ce93ff148404a1f9918b8bc107e7dd6b) 2x)
+}
+
+.icon_txt {
+  font: 0/0 a;
+}
+
+.mod_search_other,
+.mod_search_result,
+.popup_user {
+  max-height: 0;
+  visibility: hidden;
+  -webkit-transition: max-height .6s ease-out, visibility 1ms .6s;
+  transition: max-height .6s ease-out, visibility 1ms .6s;
+  overflow: hidden;
+}
