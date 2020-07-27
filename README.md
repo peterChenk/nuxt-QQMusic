@@ -1,4 +1,4 @@
-# nuxt-qqMusic
+# nuxt-QQMusic
 
 ## Build Setup
 
