@@ -38,14 +38,29 @@ export default {
     ]
   },
   /*
+  ** Customize the progress-bar color
+  */
+  loading: { 
+    color: '#007fff'
+  },
+  /*
    ** Global CSS
    */
-  css: ["~/assets/css/reset.css", "~/assets/scss/global.scss"],
+  css: [
+    "~/assets/css/reset.css", 
+    "~/assets/scss/global.scss",
+    "swiper/css/swiper.css"
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [
+    '~/plugins/axios.js',
+    '~/plugins/request.js',
+    '~/plugins/api.js',
+    { src: "~/plugins/vue-swiper.js", ssr: false }
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -65,7 +80,7 @@ export default {
   },
   proxy: {
     "/api/": {
-      target: "https://maoyan.com/",
+      target: "https://api.qq.jsososo.com/",
       pathRewrite: {
         "^/api/": ""
       }

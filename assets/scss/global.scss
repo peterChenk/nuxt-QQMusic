@@ -1,4 +1,4 @@
-.main,
+// .main,
 .section_inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -29,4 +29,8 @@
   -webkit-transition: max-height .6s ease-out, visibility 1ms .6s;
   transition: max-height .6s ease-out, visibility 1ms .6s;
   overflow: hidden;
+}
+
+.mod_bg {
+  background: url(../img/bg_detail.jpg?max_age=2592000&v=05ddeeeeca10d505b8501911cfbda543) 50% 0 repeat-x;
 }

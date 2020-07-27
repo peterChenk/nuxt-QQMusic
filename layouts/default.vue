@@ -1,12 +1,21 @@
 <template>
-  <div>
+  <div class="main">
     <mod-header></mod-header>
-    <Nuxt />
+      <Nuxt />
+    <main-footer></main-footer>
   </div>
 </template>
 
 <style>
-html {
+.main{
+width: 100%;
+height: 100%;
+min-width: 1024px !important;/* 设置成和body一样的最小宽度 */
+background-size: 100% 100%;
+}
+</style>
+<style>
+/* html {
   font-family:
     'Source Sans Pro',
     -apple-system,
@@ -59,5 +68,5 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
-}
+} */
 </style>

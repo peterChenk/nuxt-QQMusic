@@ -38,7 +38,7 @@
         </li>
       </ul>
       <ul class="mod_top_subnav">
-        <li class="top_subnav__item" v-for="(item,index) in subnavItems" @click="slective = index">
+        <li class="top_subnav__item" v-for="(item,index) in subnavItems" @click="slective = index" :key="index">
           <a :href="item.href" :class="{'top_subnav__link--current': slective===index}">{{item.text}}</a>
         </li>
       </ul>
@@ -55,35 +55,10 @@
               <dl class="search_hot__list" aria-labelledy="search_hot__tit">
                 <dt class="search_hot__tit">热门搜索</dt>
                 <dd>
-
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="我们的歌">
-                    <span class="search_hot__number">1</span>
-                    <span class="search_hot__name">我们的歌</span>
-                    <span class="search_hot__listen">76.6万</span>
-                  </a>
-
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="冰雪奇缘2">
-                    <span class="search_hot__number">2</span>
-                    <span class="search_hot__name">冰雪奇缘2</span>
-                    <span class="search_hot__listen">58.7万</span>
-                  </a>
-
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="张杰">
-                    <span class="search_hot__number">3</span>
-                    <span class="search_hot__name">张杰</span>
-                    <span class="search_hot__listen">32.4万</span>
-                  </a>
-
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="桥边姑娘">
-                    <span class="search_hot__number">4</span>
-                    <span class="search_hot__name">桥边姑娘</span>
-                    <span class="search_hot__listen">28.8万</span>
-                  </a>
-
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="星辰大海">
-                    <span class="search_hot__number">5</span>
-                    <span class="search_hot__name">星辰大海</span>
-                    <span class="search_hot__listen">20.3万</span>
+                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="我们的歌" v-for="(item, index) in searchHotList" :key="item.k">
+                    <span class="search_hot__number">{{index + 1}}</span>
+                    <span class="search_hot__name">{{item.k}}</span>
+                    <span class="search_hot__listen">{{(item.n / 10000).toFixed(2)}}万</span>
                   </a>
                 </dd>
               </dl>
@@ -176,7 +151,19 @@
           }
         ],
         slective: 0,
-        drop: false
+        drop: false,
+        searchHotList: []
+      }
+    },
+    created () {
+      // this.getSearchHot()
+    },
+    methods: {
+      async getSearchHot () {
+        const res = await this.$api.getSearchHot()
+        if(res.data.result === 100) {
+          this.searchHotList = res.data.data.slice(0, 5)
+        }
       }
     }
   };
