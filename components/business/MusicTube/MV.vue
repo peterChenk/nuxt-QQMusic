@@ -1,0 +1,134 @@
+<template>
+  <div class="mod_index mod_index--mv mod_slide_box mod_bg js_box"
+       id="mv_box">
+    <div class="section_inner">
+      <div class="index__hd">
+        <h2 class="index__tit"><i class="icon_txt">MV首播</i></h2>
+      </div>
+      <!-- 切换 -->
+      <div class="mod_index_tab"
+           data-stat="y_new.index.new_song">
+        <a v-for="(item, index) in typeList"
+           :key="index"
+           href="javascript:;"
+           class="index_tab__item js_tag"
+           :class="{ 'index_tab__item--current': active === index }"
+           @click="switchRcomd(item)"
+           :data-index="index"
+           data-type="recomPlaylist">{{ item.name }}</a>
+      </div>
+      <!-- swiper -->
+      <div class="mod_mv mod_slide">
+        <div v-swiper:mySwiper="swiperOption"
+             class="my-swiper">
+          <div class="swiper-wrapper mv_list__list">
+            <li class="mv_list__item swiper-slide"
+                v-for="banner in banners"
+                :key="banner"
+                data-vid="g0034ykznrl"
+                data-id="1636889">
+              <div class="mv_list__item_box"
+                   style="visibility: visible;">
+                <a href="https://y.qq.com/n/yqq/mv/v/g0034ykznrl.html#stat=y_new.index.mv.play_btn"
+                   onclick="setStatCookie&amp;&amp;setStatCookie();"
+                   class="mv_list__cover mod_cover js_mv"
+                   data-stat="y_new.index.mv.play_btn"
+                   data-vid="g0034ykznrl"
+                   data-id="1636889"
+                   hidefocus="true">
+                  <img class="mv_list__pic"
+                       src="//y.gtimg.cn/music/photo_new/T015R640x360M101000UP9ps4TtKLD.jpg?max_age=2592000"
+                       data-original="//y.gtimg.cn/music/photo_new/T015R640x360M101000UP9ps4TtKLD.jpg?max_age=2592000"
+                       onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
+                       alt="五月天《倔强》Live MV (Live)"
+                       style="display: block; visibility: visible;">
+                  <i class="mod_cover__icon_play"></i>
+                </a>
+                <h3 class="mv_list__title"><a href="https://y.qq.com/n/yqq/mv/v/g0034ykznrl.html#stat=y_new.index.mv.mvname"
+                     onclick="setStatCookie&amp;&amp;setStatCookie();"
+                     class="js_mv"
+                     data-stat="y_new.index.mv.mvname"
+                     data-vid="g0034ykznrl"
+                     data-id="1636889"
+                     title="五月天《倔强》Live MV (Live)">五月天《倔强》Live MV (Live)</a></h3>
+                <p class="mv_list__singer">
+                  <a href="https://y.qq.com/n/yqq/singer/000Sp0Bz4JXH0o.html#stat=y_new.index.mv.singername"
+                     onclick="setStatCookie&amp;&amp;setStatCookie();"
+                     class="js_singer"
+                     data-singermid="000Sp0Bz4JXH0o"
+                     data-stat="y_new.index.mv.singername"
+                     data-singerid="74"
+                     title="五月天">五月天</a>
+                  <!--div class="mv_list__info">2020-07-27</div-->
+                </p>
+                <div class="mv_list__info"><span class="mv_list__listen"><i class="mv_list__listen_icon sprite"></i>2.7万</span></div>
+                <p></p>
+              </div>
+            </li>
+          </div>
+          <div class="swiper-pagination swiper-pagination-bullets"></div>
+        </div>
+        <div class="swiper-button-prev"
+             slot="button-prev"></div>
+        <div class="swiper-button-next"
+             slot="button-next"></div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      active: 0,
+      typeList: [
+        { name: "内地" },
+        { name: "港台" },
+        { name: "欧美" },
+        { name: "韩国" },
+        { name: "日本" },
+        { name: "其他" }
+      ],
+      banners: [
+        "/1.jpg",
+        "/2.jpg",
+        "/3.jpg",
+        "/4.jpg",
+        "/5.jpg",
+        "/6.jpg",
+        "/7.jpg",
+        "/8.jpg"
+      ],
+      swiperOption: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+        slidesPerGroup: 5,
+        loop: true,
+        loopFillGroupWithBlank: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
+      }
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+@import "~/assets/scss/MusicTube.scss";
+.my-swiper {
+  height: 660px;
+  margin-left: auto;
+  margin-right: auto;
+  .swiper-slide {
+    height: 288px;
+  }
+}
+.swiper-pagination {
+  bottom: 10px;
+}
+</style>

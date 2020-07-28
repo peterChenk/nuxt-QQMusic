@@ -15,13 +15,12 @@ export default {
    */
   head: {
     title: process.env.npm_package_name || "",
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
         name: "viewport",
-        content: "width=device-width, initial-scale=1"
+        content: "width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover"
       },
       {
         hid: "description",
@@ -29,25 +28,23 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [
-      {
-        rel: "icon",
-        type: "image/x-icon",
-        href: "/favicon.ico"
-      }
-    ]
+    link: [{
+      rel: "icon",
+      type: "image/x-icon",
+      href: "/favicon.ico"
+    }]
   },
   /*
-  ** Customize the progress-bar color
-  */
-  loading: { 
+   ** Customize the progress-bar color
+   */
+  loading: {
     color: '#007fff'
   },
   /*
    ** Global CSS
    */
   css: [
-    "~/assets/css/reset.css", 
+    "~/assets/css/reset.css",
     "~/assets/scss/global.scss",
     "swiper/css/swiper.css"
   ],
@@ -59,7 +56,10 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/request.js',
     '~/plugins/api.js',
-    { src: "~/plugins/vue-swiper.js", ssr: false }
+    {
+      src: "~/plugins/vue-swiper.js",
+      ssr: false
+    }
   ],
   /*
    ** Auto import components
