@@ -74,10 +74,10 @@
             </li>
           </ul>
         </div>
-        <div class="swiper-pagination swiper-pagination-bullets"></div>
-        <div class="swiper-button-prev"
+        <div class="swiper-pagination swiper-pagination-bullets nd-pagination"></div>
+        <div class="swiper-button-prev nd-prev"
              slot="button-prev"></div>
-        <div class="swiper-button-next"
+        <div class="swiper-button-next nd-next"
              slot="button-next"></div>
       </div>
     </div>
@@ -119,12 +119,12 @@ export default {
         // loop: true,
         // loopFillGroupWithBlank: true,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".nd-pagination",
           clickable: true
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          nextEl: ".nd-next",
+          prevEl: ".nd-prev"
         }
       }
     }

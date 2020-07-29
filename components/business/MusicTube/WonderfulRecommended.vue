@@ -26,10 +26,10 @@
             </li>
           </ul>
         </div>
-        <div class="swiper-pagination swiper-pagination-bullets"></div>
-        <div class="swiper-button-prev"
+        <div class="swiper-pagination swiper-pagination-bullets wf-pagination"></div>
+        <div class="swiper-button-prev wf-prev"
              slot="button-prev"></div>
-        <div class="swiper-button-next"
+        <div class="swiper-button-next wf-next"
              slot="button-next"></div>
       </div>
     </div>
@@ -56,12 +56,12 @@ export default {
         loop: true,
         loopFillGroupWithBlank: true,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".wf-pagination",
           clickable: true
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          nextEl: ".wf-next",
+          prevEl: ".wf-prev"
         }
       }
     }

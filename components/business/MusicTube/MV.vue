@@ -21,8 +21,8 @@
       <div class="mod_mv mod_slide">
         <div v-swiper:mySwiper="swiperOption"
              class="my-swiper">
-          <div class="swiper-wrapper mv_list__list">
-            <li class="mv_list__item swiper-slide"
+          <ul class="swiper-wrapper">
+            <li class="swiper-slide"
                 v-for="banner in banners"
                 :key="banner"
                 data-vid="g0034ykznrl"
@@ -65,12 +65,12 @@
                 <p></p>
               </div>
             </li>
-          </div>
-          <div class="swiper-pagination swiper-pagination-bullets"></div>
+          </ul>
         </div>
-        <div class="swiper-button-prev"
+        <div class="swiper-pagination swiper-pagination-bullets mv-pagination"></div>
+        <div class="swiper-button-prev mv-prev"
              slot="button-prev"></div>
-        <div class="swiper-button-next"
+        <div class="swiper-button-next mv-next"
              slot="button-next"></div>
       </div>
     </div>
@@ -97,21 +97,35 @@ export default {
         "/5.jpg",
         "/6.jpg",
         "/7.jpg",
+        "/8.jpg",
+        "/3.jpg",
+        "/4.jpg",
+        "/5.jpg",
+        "/6.jpg",
+        "/7.jpg",
+        "/8.jpg",
+        "/8.jpg",
+        "/3.jpg",
+        "/4.jpg",
+        "/5.jpg",
+        "/6.jpg",
+        "/7.jpg",
         "/8.jpg"
       ],
       swiperOption: {
         slidesPerView: 5,
+        slidesPerColumn: 2,
         spaceBetween: 20,
-        slidesPerGroup: 5,
-        loop: true,
-        loopFillGroupWithBlank: true,
+        slidesPerGroup: 10,
+        // loop: true,
+        // loopFillGroupWithBlank: true,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".mv-pagination",
           clickable: true
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          nextEl: ".mv-next",
+          prevEl: ".mv-prev"
         }
       }
     }
@@ -121,11 +135,12 @@ export default {
 <style lang="scss" scoped>
 @import "~/assets/scss/MusicTube.scss";
 .my-swiper {
-  height: 660px;
+  height: 465px;
   margin-left: auto;
   margin-right: auto;
   .swiper-slide {
-    height: 288px;
+    // height: 288px;
+    height: calc((100% - 20px) / 2);
   }
 }
 .swiper-pagination {

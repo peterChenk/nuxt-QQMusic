@@ -13,27 +13,25 @@
            href="javascript:;"
            class="index_tab__item js_tag"
            :class="{ 'index_tab__item--current': active === index }"
-           @click="switchRcomd(item)"
+           @click="switchRcomd(item, index)"
            :data-index="index"
            data-type="recomPlaylist">{{ item.name }}</a>
       </div>
       <!-- swiper -->
       <div class="mod_playlist mod_slide">
-        <div v-swiper:mySwiper="swiperOption"
+        <div v-swiper:secondSwiper="swiperOption"
              class="my-swiper">
           <ul class="swiper-wrapper">
             <li class="songlist__item swiper-slide"
-                v-for="banner in banners"
-                :key="banner"
+                v-for="(item) in newSongsList"
+                :key="item.id"
                 mid="273454443"
                 ix="67">
-
               <div class="songlist__edit songlist__edit--check sprite"
                    style="display:none;">
                 <input type="checkbox"
                        class="songlist__checkbox">
               </div>
-
               <div class="songlist__item_box"
                    style="visibility: visible;">
                 <a href="https://y.qq.com/n/yqq/album/004M91mx3KeKTZ.html"
@@ -42,7 +40,7 @@
                    data-albumid="13952172"
                    class="album_name songlist__link mod_cover">
                   <img class="songlist__pic"
-                       src="//y.gtimg.cn/music/photo_new/T002R90x90M000004M91mx3KeKTZ_1.jpg?max_age=2592000"
+                       :src="imgSrc(item)"
                        data-original="//y.gtimg.cn/music/photo_new/T002R90x90M000004M91mx3KeKTZ_1.jpg?max_age=2592000"
                        onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;"
                        style="display: block; visibility: visible;">
@@ -55,30 +53,31 @@
                        onclick="setStatCookie&amp;&amp;setStatCookie();"
                        data-stat="y_new.index.new_song.songname"
                        class="js_song"
-                       title="等等 《忘不了餐厅》第二季 综艺插曲">等等<span class="songlist__song_txt">《忘不了餐厅》第二季 综艺插曲</span></a></h3>
+                       :title="item.title"><span class="songlist__song_txt">{{item.name}}</span></a></h3>
 
                   <p class="songlist__author"
-                     title="赖美云">
+                     :title="item.singer.name">
 
                     <a href="https://y.qq.com/n/yqq/singer/001YMQJO2Av6y5.html#stat=y_new.index.new_song.singername"
                        onclick="setStatCookie&amp;&amp;setStatCookie();"
                        data-stat="y_new.index.new_song.singername"
                        data-singermid="001YMQJO2Av6y5"
                        data-singerid="2141459"
-                       title="赖美云"
-                       class="c_tx_thin singer_name">赖美云</a>
+                       :title="item.singer[0].name"
+                       class="c_tx_thin singer_name">{{item.singer[0].name}}</a>
 
                   </p>
                 </div>
-                <div class="songlist__time c_tx_thin">03:57</div>
+                <div class="songlist__time c_tx_thin">{{(item.interval / 60).toFixed(2)}}</div>
               </div>
             </li>
           </ul>
         </div>
-        <div class="swiper-pagination swiper-pagination-bullets"></div>
-        <div class="swiper-button-prev"
+        <div class="swiper-pagination swiper-pagination-bullets ns-pagination"
+             slot="pagination"></div>
+        <div class="swiper-button-prev ns-prev"
              slot="button-prev"></div>
-        <div class="swiper-button-next"
+        <div class="swiper-button-next ns-next"
              slot="button-next"></div>
       </div>
     </div>
@@ -90,12 +89,12 @@ export default {
     return {
       active: 0,
       typeList: [
-        { name: "最新" },
-        { name: "内地" },
-        { name: "港台" },
-        { name: "欧美" },
-        { name: "韩国" },
-        { name: "日本" }
+        { name: "最新", type: '0' },
+        { name: "内地", type: '1' },
+        { name: "港台", type: '2' },
+        { name: "欧美", type: '3' },
+        { name: "韩国", type: '4' },
+        { name: "日本", type: '5' }
       ],
       banners: [
         "/1.jpg",
@@ -106,26 +105,52 @@ export default {
         "/6.jpg",
         "/7.jpg",
         "/8.jpg",
+        "/1.jpg",
+        "/2.jpg",
+        "/3.jpg",
+        "/4.jpg",
         "/5.jpg",
         "/6.jpg",
         "/7.jpg",
-        "/8.jpg"
+        "/8.jpg",
+        "/4.jpg",
+        "/5.jpg",
       ],
       swiperOption: {
         slidesPerView: 3,
         slidesPerColumn: 3,
-        spaceBetween: 0,
+        slidesPerGroup: 9,
+        // spaceBetween: 0,
         loop: true,
         // loopFillGroupWithBlank: true,
         pagination: {
-          el: ".swiper-pagination",
+          el: ".ns-pagination",
           clickable: true
         },
         navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev"
+          nextEl: ".ns-next",
+          prevEl: ".ns-prev"
         }
+      },
+      newSongsList: this.newSongs
+    }
+  },
+  props: {
+    newSongs: {
+      type: Array,
+      default: []
+    }
+  },
+  methods: {
+    async switchRcomd (item, index) {
+      const res = await this.$api.newSongs(item.type)
+      if (res.data.result === 100) {
+        this.newSongsList = res.data.data.list
       }
+      this.active = index
+    },
+    imgSrc (item) {
+      return `//y.gtimg.cn/music/photo_new/T002R90x90M000${item.album.pmid}.jpg?max_age=2592000`
     }
   }
 }
