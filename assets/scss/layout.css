@@ -2030,7 +2030,7 @@ body {
   overflow-y: scroll
 }
 
-/* .main, */
+.main-content,
 .section_inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -2944,4 +2944,10 @@ body {
   width: 13px;
   height: 14px;
   background-position: -160px -320px
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
 }

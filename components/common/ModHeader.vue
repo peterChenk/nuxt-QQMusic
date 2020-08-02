@@ -38,9 +38,12 @@
         </li>
       </ul>
       <ul class="mod_top_subnav">
-        <li class="top_subnav__item" v-for="(item,index) in subnavItems" @click="slective = index" :key="index">
+        <!-- <li class="top_subnav__item" v-for="(item,index) in subnavItems" @click="slective = index" :key="index">
           <a :href="item.href" :class="{'top_subnav__link--current': slective===index}">{{item.text}}</a>
-        </li>
+        </li> -->
+        <nuxt-link v-for="(item,index) in subnavItems" :key="item.id" :to="item.link" tag="li" class="top_subnav__item">
+          <a :href="item.href" :class="{'top_subnav__link--current': slective===index}">{{item.text}}</a>
+        </nuxt-link>
       </ul>
       <!-- 导航 E -->
       <div class="mod_top_search" role="search">
@@ -55,7 +58,8 @@
               <dl class="search_hot__list" aria-labelledy="search_hot__tit">
                 <dt class="search_hot__tit">热门搜索</dt>
                 <dd>
-                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="我们的歌" v-for="(item, index) in searchHotList" :key="item.k">
+                  <a href="javascript:;" class="search_hot__link js_smartbox_search js_left" data-name="我们的歌"
+                    v-for="(item, index) in searchHotList" :key="item.k">
                     <span class="search_hot__number">{{index + 1}}</span>
                     <span class="search_hot__name">{{item.k}}</span>
                     <span class="search_hot__listen">{{(item.n / 10000).toFixed(2)}}万</span>
@@ -114,39 +118,39 @@
       return {
         navItems: [],
         subnavItems: [{
-            "href": "https://y.qq.com/",
+            link: "/",
             text: "首页"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "/singer",
             text: "歌手"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "/newDisc",
             text: "新碟"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "https://y.qq.com/",
             text: "排行榜"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "https://y.qq.com/",
             text: "分类歌单"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "https://y.qq.com/",
             text: "电台"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "/mv",
             text: "MV"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "https://y.qq.com/",
             text: "数字专辑"
           },
           {
-            "href": "https://y.qq.com/",
+            link: "https://y.qq.com/",
             text: "票务"
           }
         ],
@@ -155,13 +159,13 @@
         searchHotList: []
       }
     },
-    created () {
+    created() {
       // this.getSearchHot()
     },
     methods: {
-      async getSearchHot () {
+      async getSearchHot() {
         const res = await this.$api.getSearchHot()
-        if(res.data.result === 100) {
+        if (res.data.result === 100) {
           this.searchHotList = res.data.data.slice(0, 5)
         }
       }
