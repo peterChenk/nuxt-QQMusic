@@ -41,8 +41,8 @@
         <!-- <li class="top_subnav__item" v-for="(item,index) in subnavItems" @click="slective = index" :key="index">
           <a :href="item.href" :class="{'top_subnav__link--current': slective===index}">{{item.text}}</a>
         </li> -->
-        <nuxt-link v-for="(item,index) in subnavItems" :key="item.id" :to="item.link" tag="li" class="top_subnav__item">
-          <a :href="item.href" :class="{'top_subnav__link--current': slective===index}">{{item.text}}</a>
+        <nuxt-link v-for="(item) in subnavItems" :key="item.id" :to="item.link" tag="li" class="top_subnav__item">
+          <a :href="item.href" :class="{'top_subnav__link--current': item.link === routePath}">{{item.text}}</a>
         </nuxt-link>
       </ul>
       <!-- 导航 E -->
@@ -146,17 +146,22 @@
             text: "MV"
           },
           {
-            link: "https://y.qq.com/",
+            link: "https://y.qq.com/portal/album_mall.html",
             text: "数字专辑"
           },
           {
-            link: "https://y.qq.com/",
+            link: "https://y.qq.com/portal/piao_wu.html",
             text: "票务"
           }
         ],
         slective: 0,
         drop: false,
         searchHotList: []
+      }
+    },
+    computed: {
+      routePath() {
+        return this.$route.path || '/'
       }
     },
     created() {
