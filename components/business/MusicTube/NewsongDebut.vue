@@ -121,7 +121,7 @@ export default {
         slidesPerColumn: 3,
         slidesPerGroup: 9,
         // spaceBetween: 0,
-        loop: true,
+        // loop: true,
         // loopFillGroupWithBlank: true,
         pagination: {
           el: ".ns-pagination",
