@@ -130,7 +130,7 @@
             text: "新碟"
           },
           {
-            link: "https://y.qq.com/",
+            link: "/leaderboard",
             text: "排行榜"
           },
           {

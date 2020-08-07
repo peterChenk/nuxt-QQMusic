@@ -147,6 +147,8 @@
 
 </script>
 <style lang="scss" scoped>
+  @import "~/assets/scss/index.css";
+  @import "~/assets/scss/layout.css";
   @import "~/assets/scss/MusicTube.scss";
 
   .my-swiper {

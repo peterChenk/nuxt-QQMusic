@@ -114,6 +114,21 @@ export default ({
     MVList(params = {}) {
       return $request.get('/mv/list', params)
     },
+    /**
+     * 排行榜 分类
+     */
+    topCategory (showDetail = 0) {
+      return $request.get('/top/category', {showDetail: showDetail})
+    },
+    /**
+     * 排行榜榜单详情
+     */
+    topDetail( params = {
+      id: 4,
+      pageSize: 20
+    }) {
+      return $request.get('/top', params)
+    },
   }
   inject('api', apiList)
 }

@@ -144,113 +144,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/MusicTube.scss";
+  @import "~/assets/scss/index.css";
+  @import "~/assets/scss/layout.css";
+  @import "~/assets/scss/MusicTube.scss";
 .mod_slide {
   // overflow: hidden;
   margin-bottom: 100px;
 }
-.mod_playlist .playlist__item {
-  display: inline-block;
-  width: 20%;
-  padding-bottom: 44px;
-  overflow: hidden;
-  font-size: 14px;
-  vertical-align: top;
-}
-.mod_index--hot .playlist__item {
-  position: relative;
-  width: 1.6%;
-  padding-bottom: 0;
-}
-.mod_index--hot .playlist__item:before {
-  content: "";
-  display: block;
-  width: 100%;
-  padding-top: 100%;
-  padding-bottom: 66px;
-}
-.mod_playlist .playlist__item_box {
-  position: relative;
-  // margin-right: 20px;
-  text-align: left;
-}
-.mod_index--hot .playlist__item_box {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-}
-.mod_playlist .playlist__cover {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  padding-top: 100%;
-  margin-bottom: 15px;
-}
-.mod_playlist .playlist__pic {
-  height: 100%;
-  object-fit: cover;
-}
-.mod_playlist .playlist__pic {
-  transform: scale(1) translateZ(0);
-  transition: transform 0.75s;
-}
-.mod_playlist .playlist__pic {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  -webkit-transform: scale(1) translateZ(0);
-  -webkit-transition: -webkit-transform 0.75s;
-}
-.mod_cover__mask {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  -webkit-transition: opacity 0.5s;
-  transition: opacity 0.5s;
-}
-.mod_cover:hover .mod_cover__icon_play,
-.mod_cover__icon_play {
-  background-image: url("../../../assets/img/cover_play.png?max_age=2592000&v=88abebcbc1242dbbbbc836cc3e04a006");
-  // background-image: -webkit-image-set(url(img/cover_play.png?max_age=2592000&v=88abebc…&v=88abebc…) 1x,url(img/cover_play@2x.png?max_age=2592000&v=88abebc…&v=88abebc…&v=10e4305…) 2x);
-}
-.mod_playlist .playlist__title {
-  overflow: hidden;
-}
-.mod_playlist .playlist__title_txt {
-  white-space: normal;
-}
-.mod_playlist .playlist__title_txt {
-  float: left;
-  max-width: 100%;
-  font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 22px;
-  max-height: 44px;
-}
-.mod_playlist .playlist__author,
-.mod_playlist .playlist__author a,
-.mod_playlist .playlist__other {
-  color: #999;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 22px;
-  font-weight: 400;
-}
-.mod_playlist .playlist__cover:hover .playlist__pic {
-  transform: scale(1.07) translateZ(0);
-  transition: transform 0.75s cubic-bezier(0, 1, 0.75, 1);
-}
-a:hover {
-  color: #31c27c;
-  text-decoration: none;
-}
+
 </style>
