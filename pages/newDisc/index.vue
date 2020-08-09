@@ -124,6 +124,6 @@
 
 </script>
 <style lang="scss" scoped>
-  @import "~/assets/scss/album.css"
+  @import "~/assets/scss/album.css";
 
 </style>

@@ -1,4 +1,6 @@
-@charset "utf-8";.mod_list_menu {
+@charset "utf-8";
+
+.mod_list_menu {
   font-size: 0;
   height: 36px
 }
@@ -9,7 +11,14 @@
   vertical-align: top
 }
 
-.list_menu__icon_add,.list_menu__icon_delete,.list_menu__icon_down,.list_menu__icon_down_vip,.list_menu__icon_edit,.list_menu__icon_pause,.list_menu__icon_play,.list_menu__icon_share {
+.list_menu__icon_add,
+.list_menu__icon_delete,
+.list_menu__icon_down,
+.list_menu__icon_down_vip,
+.list_menu__icon_edit,
+.list_menu__icon_pause,
+.list_menu__icon_play,
+.list_menu__icon_share {
   display: block;
   width: 36px;
   height: 36px;
@@ -52,7 +61,7 @@
 
 @media (max-width: 1240px) {
   .list_menu__item {
-      margin-right:5px
+    margin-right: 5px
   }
 }
 
@@ -92,35 +101,43 @@
   cursor: default
 }
 
-.songlist__item--disable .list_menu__icon_play,.songlist__item--disable .list_menu__item:hover .list_menu__icon_play {
+.songlist__item--disable .list_menu__icon_play,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_play {
   background-position: -160px 0
 }
 
-.songlist__item--disable .list_menu__icon_pause,.songlist__item--disable .list_menu__item:hover .list_menu__icon_pause {
+.songlist__item--disable .list_menu__icon_pause,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_pause {
   background-position: -160px -200px
 }
 
-.songlist__item--disable .list_menu__icon_share,.songlist__item--disable .list_menu__item:hover .list_menu__icon_share {
+.songlist__item--disable .list_menu__icon_share,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_share {
   background-position: -160px -40px
 }
 
-.songlist__item--disable .list_menu__icon_add,.songlist__item--disable .list_menu__item:hover .list_menu__icon_add {
+.songlist__item--disable .list_menu__icon_add,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_add {
   background-position: -160px -80px
 }
 
-.songlist__item--disable .list_menu__icon_down,.songlist__item--disable .list_menu__item:hover .list_menu__icon_down {
+.songlist__item--disable .list_menu__icon_down,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_down {
   background-position: -160px -120px
 }
 
-.songlist__item--disable .list_menu__icon_down_vip,.songlist__item--disable .list_menu__item:hover .list_menu__icon_down_vip {
+.songlist__item--disable .list_menu__icon_down_vip,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_down_vip {
   background-position: -160px -280px
 }
 
-.songlist__item--disable .list_menu__icon_edit,.songlist__item--disable .list_menu__item:hover .list_menu__icon_edit {
+.songlist__item--disable .list_menu__icon_edit,
+.songlist__item--disable .list_menu__item:hover .list_menu__icon_edit {
   background-position: -160px -240px
 }
 
-.songlist__item--disable .list_menu__icon_delete,.songlist__item--disable .list_menu__item:hover {
+.songlist__item--disable .list_menu__icon_delete,
+.songlist__item--disable .list_menu__item:hover {
   background-position: -160px -160px
 }
 
@@ -137,11 +154,12 @@
   font-size: 14px
 }
 
-.operate_menu__cont,.operate_menu__sub {
+.operate_menu__cont,
+.operate_menu__sub {
   width: 168px;
   padding: 5px 0;
   background-color: #fff;
-  box-shadow: 0 0 10px 0 rgba(183,183,183,.65);
+  box-shadow: 0 0 10px 0 rgba(183, 183, 183, .65);
   border: 1px solid #bfbfbf
 }
 
@@ -167,7 +185,8 @@
   padding-left: 15px
 }
 
-.operate_menu__link--hover,.operate_menu__link:hover {
+.operate_menu__link--hover,
+.operate_menu__link:hover {
   background-color: #31c27c;
   color: #fff
 }
@@ -220,12 +239,24 @@
   padding-left: 15px
 }
 
-.operate_menu__item--hover .operate_menu__sub,.operate_menu__item:focus .operate_menu__sub {
+.operate_menu__item--hover .operate_menu__sub,
+.operate_menu__item:focus .operate_menu__sub {
   display: block;
   max-height: 285px
 }
 
-.operate_menu__icon_add,.operate_menu__icon_arrow,.operate_menu__icon_batch,.operate_menu__icon_delete,.operate_menu__icon_down,.operate_menu__icon_edit,.operate_menu__icon_inform,.operate_menu__icon_like,.operate_menu__icon_prev_arrow,.operate_menu__icon_qzone,.operate_menu__icon_radio,.operate_menu__icon_share {
+.operate_menu__icon_add,
+.operate_menu__icon_arrow,
+.operate_menu__icon_batch,
+.operate_menu__icon_delete,
+.operate_menu__icon_down,
+.operate_menu__icon_edit,
+.operate_menu__icon_inform,
+.operate_menu__icon_like,
+.operate_menu__icon_prev_arrow,
+.operate_menu__icon_qzone,
+.operate_menu__icon_radio,
+.operate_menu__icon_share {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -351,7 +382,8 @@
   color: #a2a2a2
 }
 
-.mod_page_nav a,.mod_page_nav strong {
+.mod_page_nav a,
+.mod_page_nav strong {
   font-size: 16px;
   font-weight: 400;
   display: inline-block;
@@ -362,16 +394,19 @@
   min-width: 24px
 }
 
-.mod_page_nav .current,.mod_page_nav a:hover {
+.mod_page_nav .current,
+.mod_page_nav a:hover {
   color: #fff;
   background-color: #31c27c
 }
 
-.mod_page_nav__next,.mod_page_nav__prev {
+.mod_page_nav__next,
+.mod_page_nav__prev {
   font-size: 0
 }
 
-.mod_page_nav__next_icon,.mod_page_nav__prev_icon {
+.mod_page_nav__next_icon,
+.mod_page_nav__prev_icon {
   display: inline-block;
   width: 6px;
   height: 11px;
@@ -415,7 +450,8 @@
   clear: both
 }
 
-.songlist__header,.songlist__item {
+.songlist__header,
+.songlist__item {
   position: relative;
   padding-left: 46px;
   padding-right: 95px
@@ -428,10 +464,14 @@
 }
 
 .songlist__item--even {
-  background-color: rgba(0,0,0,.01)
+  background-color: rgba(0, 0, 0, .01)
 }
 
-.songlist__album,.songlist__artist,.songlist__number,.songlist__other,.songlist__time {
+.songlist__album,
+.songlist__artist,
+.songlist__number,
+.songlist__other,
+.songlist__time {
   line-height: 50px;
   height: 50px;
   overflow: hidden;
@@ -451,32 +491,38 @@
 .songlist__header {
   height: 50px;
   line-height: 50px;
-  background-color: rgba(0,0,0,.01);
+  background-color: rgba(0, 0, 0, .01);
   color: #999
 }
 
-.songlist__header_name,.songlist__songname {
+.songlist__header_name,
+.songlist__songname {
   float: left;
   width: 47.685185%;
   position: relative;
   white-space: normal
 }
 
-.songlist__album,.songlist__artist,.songlist__header_album,.songlist__header_author {
+.songlist__album,
+.songlist__artist,
+.songlist__header_album,
+.songlist__header_author {
   float: left;
   padding-left: 15px;
   width: 25.5%;
   box-sizing: border-box
 }
 
-.songlist__header_time,.songlist__time {
+.songlist__header_time,
+.songlist__time {
   position: absolute;
   top: 0;
   right: 38px;
   width: 50px
 }
 
-.songlist__header_other,.songlist__other {
+.songlist__header_other,
+.songlist__other {
   position: absolute;
   top: 0;
   right: 0;
@@ -488,7 +534,8 @@
   margin-left: 10px
 }
 
-.songlist__song_txt,.songlist__time {
+.songlist__song_txt,
+.songlist__time {
   color: #999
 }
 
@@ -539,60 +586,74 @@
   pointer-events: none
 }
 
-.songlist__item--current .mod_list_menu,.songlist__item:hover .mod_list_menu {
+.songlist__item--current .mod_list_menu,
+.songlist__item:hover .mod_list_menu {
   opacity: 1;
   pointer-events: inherit;
   right: -10px;
   margin-top: -18px
 }
 
-.songlist__item--current .songlist__songname_txt,.songlist__item:hover .songlist__songname_txt {
+.songlist__item--current .songlist__songname_txt,
+.songlist__item:hover .songlist__songname_txt {
   max-width: 23%
 }
 
-.songlist__item--current .songlist__songname_txt:nth-child(1),.songlist__item:hover .songlist__songname_txt:nth-child(1) {
+.songlist__item--current .songlist__songname_txt:nth-child(1),
+.songlist__item:hover .songlist__songname_txt:nth-child(1) {
   max-width: 50%
 }
 
-.songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
+.songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
   max-width: 38%
 }
 
-.songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
+.songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
   max-width: 28%
 }
 
 @media (max-width: 1240px) {
-  .songlist__item--current .songlist__songname_txt,.songlist__item:hover .songlist__songname_txt {
-      max-width:30%
+
+  .songlist__item--current .songlist__songname_txt,
+  .songlist__item:hover .songlist__songname_txt {
+    max-width: 30%
   }
 
-  .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
-      max-width: 32%
+  .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+  .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
+    max-width: 32%
   }
 
-  .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
-      max-width: 22%
+  .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+  .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
+    max-width: 22%
   }
 
-  .songlist__item--current .songlist__icon:nth-child(3)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(3)+.songlist__songname_txt {
-      max-width: 10%
+  .songlist__item--current .songlist__icon:nth-child(3)+.songlist__songname_txt,
+  .songlist__item:hover .songlist__icon:nth-child(3)+.songlist__songname_txt {
+    max-width: 10%
   }
 
-  .mod_songlist--edit .songlist__item--current .songlist__songname_txt,.mod_songlist--edit .songlist__item:hover .songlist__songname_txt {
-      max-width: 37%
+  .mod_songlist--edit .songlist__item--current .songlist__songname_txt,
+  .mod_songlist--edit .songlist__item:hover .songlist__songname_txt {
+    max-width: 37%
   }
 
-  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
-      max-width: 20%
+  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+  .mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
+    max-width: 20%
   }
 
-  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
-      max-width: 11%
+  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+  .mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
+    max-width: 11%
   }
 
-  .songlist__item--current .mod_list_menu,.songlist__item:hover .mod_list_menu {
-      right: -5px
+  .songlist__item--current .mod_list_menu,
+  .songlist__item:hover .mod_list_menu {
+    right: -5px
   }
 }
 
@@ -685,11 +746,14 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   margin-top: -44px
 }
 
-.mod_songlist--edit .songlist__header,.mod_songlist--edit .songlist__item,.mod_songlist_toolbar--edit {
+.mod_songlist--edit .songlist__header,
+.mod_songlist--edit .songlist__item,
+.mod_songlist_toolbar--edit {
   padding-left: 82px
 }
 
-.mod_songlist--edit .songlist__edit,.mod_songlist_toolbar--edit .songlist__edit {
+.mod_songlist--edit .songlist__edit,
+.mod_songlist_toolbar--edit .songlist__edit {
   display: block;
   position: absolute;
   left: 20px;
@@ -702,12 +766,14 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   background-position: -1000px
 }
 
-.mod_songlist--edit .songlist__edit input,.mod_songlist_toolbar--edit input {
+.mod_songlist--edit .songlist__edit input,
+.mod_songlist_toolbar--edit input {
   width: 14px;
   height: 14px
 }
 
-.mod_songlist--edit .songlist__edit--check,.mod_songlist_toolbar--edit .songlist__edit--check {
+.mod_songlist--edit .songlist__edit--check,
+.mod_songlist_toolbar--edit .songlist__edit--check {
   border-color: #31c27c;
   background-position: -60px -100px
 }
@@ -720,7 +786,12 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   left: 46px
 }
 
-.icon_rank_down,.icon_rank_keep,.icon_rank_new,.icon_rank_popular,.icon_rank_re,.icon_rank_up {
+.icon_rank_down,
+.icon_rank_keep,
+.icon_rank_new,
+.icon_rank_popular,
+.icon_rank_re,
+.icon_rank_up {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -784,7 +855,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   background-repeat: no-repeat
 }
 
-.icon_comment_like,.icon_comment_liked {
+.icon_comment_like,
+.icon_comment_liked {
   display: inline-block;
   margin-right: 5px;
   width: 17px;
@@ -801,7 +873,9 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   color: #31c27c
 }
 
-.comment__zan.done .icon_comment_like,.comment__zan:hover .icon_comment_like,.icon_comment_liked {
+.comment__zan.done .icon_comment_like,
+.comment__zan:hover .icon_comment_like,
+.icon_comment_liked {
   background-position: 0 -25px
 }
 
@@ -828,7 +902,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   vertical-align: middle
 }
 
-.icon_comment_feedback.done,.icon_comment_feedback:hover {
+.icon_comment_feedback.done,
+.icon_comment_feedback:hover {
   background-position: 0 -50px
 }
 
@@ -880,7 +955,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   margin: 10px 14px 0 14px
 }
 
-.comment__textarea_default,.comment__textarea_input {
+.comment__textarea_default,
+.comment__textarea_input {
   width: 100%;
   border: none;
   height: 66px;
@@ -929,7 +1005,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   color: #31c27c
 }
 
-.comment__face--select .icon_face,.comment__face:hover .icon_face {
+.comment__face--select .icon_face,
+.comment__face:hover .icon_face {
   background-position: -240px -320px
 }
 
@@ -940,7 +1017,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
 .comment__list_item {
   position: relative;
   padding: 15px 0 15px 56px;
-  zoom:1;border-bottom-width: 1px;
+  zoom: 1;
+  border-bottom-width: 1px;
   border-bottom-style: solid;
   border-color: #ededed
 }
@@ -978,7 +1056,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   text-overflow: ellipsis
 }
 
-.comment__title a,.comment__title span {
+.comment__title a,
+.comment__title span {
   float: left
 }
 
@@ -1060,7 +1139,11 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   vertical-align: -2px
 }
 
-.comment__delete,.comment__good,.comment__link,.comment__report,.comment__zan {
+.comment__delete,
+.comment__good,
+.comment__link,
+.comment__report,
+.comment__zan {
   margin-right: 22px
 }
 
@@ -1069,7 +1152,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   vertical-align: -2px
 }
 
-.comment__list_item:hover .comment__delete,.comment__list_item:hover .comment__report {
+.comment__list_item:hover .comment__delete,
+.comment__list_item:hover .comment__report {
   display: inline-block
 }
 
@@ -1138,7 +1222,7 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   height: auto;
   padding: 25px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .3);
   border: 1px solid #bfbfbf
 }
 
@@ -1450,7 +1534,7 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
 }
 
 .c_popup__disabled:hover {
-  color: rgba(0,0,0,.3)
+  color: rgba(0, 0, 0, .3)
 }
 
 .mod_popup_yueping {
@@ -1525,17 +1609,20 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   font-size: 12px
 }
 
-.mod_part,.mod_part_detail {
+.mod_part,
+.mod_part_detail {
   position: relative;
   margin-bottom: 30px
 }
 
-.part__hd,.part_detail__hd {
+.part__hd,
+.part_detail__hd {
   overflow: hidden;
   height: 60px
 }
 
-.part__tit,.part_detail__tit {
+.part__tit,
+.part_detail__tit {
   float: left;
   font-size: 24px;
   font-weight: 400;
@@ -1568,11 +1655,13 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   background-position: -120px -60px
 }
 
-.mod_part .mv_list__item,.mod_part .playlist__item {
+.mod_part .mv_list__item,
+.mod_part .playlist__item {
   padding-bottom: 0
 }
 
-.mod_part .mv_list__item,.mod_part .singer_list__item {
+.mod_part .mv_list__item,
+.mod_part .singer_list__item {
   width: 20%
 }
 
@@ -1630,7 +1719,8 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   border-color: #c9c9c9
 }
 
-.part_switch__item--select,.part_switch__item--select:hover {
+.part_switch__item--select,
+.part_switch__item--select:hover {
   background-color: #31c27c;
   color: #fff;
   border-color: #31c27c;
@@ -1670,7 +1760,7 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
 }
 
 .part_tags .part_tags__delete:hover {
-  background-color: rgba(225,225,225,.3);
+  background-color: rgba(225, 225, 225, .3);
   border-radius: 12px
 }
 
@@ -1710,12 +1800,12 @@ body:last-child .popup_data_detail__arrow {
   width: 178px;
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(153,153,153,.2)
+  border-color: rgba(153, 153, 153, .2)
 }
 
 @media \0screen\,screen\9 {
   .toplist_nav {
-      border-color: #e7e7e7
+    border-color: #e7e7e7
   }
 }
 
@@ -1738,7 +1828,8 @@ body:last-child .popup_data_detail__arrow {
   padding: 8px 17px
 }
 
-.toplist_nav__link--current,.toplist_nav__link--current:hover {
+.toplist_nav__link--current,
+.toplist_nav__link--current:hover {
   background-color: #31c27c;
   color: #fff
 }
@@ -1778,7 +1869,8 @@ body:last-child .popup_data_detail__arrow {
   overflow: hidden
 }
 
-.toplist_switch__btn,_::-webkit-:not(:root:root) {
+.toplist_switch__btn,
+_::-webkit-:not(:root:root) {
   margin-top: 7px
 }
 
@@ -1789,7 +1881,8 @@ body:last-child .popup_data_detail__arrow {
   cursor: default
 }
 
-.toplist_switch__arrow_next,.toplist_switch__arrow_prev {
+.toplist_switch__arrow_next,
+.toplist_switch__arrow_prev {
   display: block;
   width: 7px;
   height: 12px;
@@ -1824,25 +1917,25 @@ body:last-child .popup_data_detail__arrow {
 
 @media (max-width: 1240px) {
   .toplist_nav {
-      width:150px
+    width: 150px
   }
 
   .toplist_nav__tit {
-      font-size: 16px
+    font-size: 16px
   }
 
   .toplist_nav__link {
-      font-size: 14px
+    font-size: 14px
   }
 
   .mod_toplist {
-      margin-left: 175px
+    margin-left: 175px
   }
 }
 
 @media (max-width: 1100px) {
   .mod_toplist {
-      margin-left:168px
+    margin-left: 168px
   }
 }
 
@@ -1850,7 +1943,8 @@ body:last-child .popup_data_detail__arrow {
   margin-bottom: 60px
 }
 
-.songlist__header,.songlist__item {
+.songlist__header,
+.songlist__item {
   padding-left: 122px
 }
 
@@ -1862,12 +1956,19 @@ body:last-child .popup_data_detail__arrow {
   width: 42px
 }
 
-.songlist__album,.songlist__artist,.songlist__number,.songlist__other,.songlist__rank,.songlist__songname,.songlist__time {
+.songlist__album,
+.songlist__artist,
+.songlist__number,
+.songlist__other,
+.songlist__rank,
+.songlist__songname,
+.songlist__time {
   line-height: 80px;
   height: 80px
 }
 
-.songlist__header_name,.songlist__songname {
+.songlist__header_name,
+.songlist__songname {
   width: 72%
 }
 
@@ -1901,7 +2002,8 @@ body:last-child .popup_data_detail__arrow {
   margin-top: 5px
 }
 
-.songlist__cover,.songlist__pic {
+.songlist__cover,
+.songlist__pic {
   width: 70px;
   height: 70px
 }
@@ -1914,7 +2016,8 @@ body:last-child .popup_data_detail__arrow {
   top: 60px
 }
 
-.mod_songlist--edit .songlist__header,.mod_songlist--edit .songlist__item {
+.mod_songlist--edit .songlist__header,
+.mod_songlist--edit .songlist__item {
   padding-left: 145px
 }
 
@@ -1923,26 +2026,30 @@ body:last-child .popup_data_detail__arrow {
 }
 
 @media (max-width: 1240px) and (min-width:1100px) {
-  .songlist__cover,.songlist__pic {
-      width:60px;
-      height: 60px
+
+  .songlist__cover,
+  .songlist__pic {
+    width: 60px;
+    height: 60px
   }
 
   .songlist__cover {
-      margin-right: 10px;
-      margin-top: 10px
+    margin-right: 10px;
+    margin-top: 10px
   }
 }
 
 @media (max-width: 1100px) {
-  .songlist__cover,.songlist__pic {
-      width:40px;
-      height: 40px
+
+  .songlist__cover,
+  .songlist__pic {
+    width: 40px;
+    height: 40px
   }
 
   .songlist__cover {
-      margin-right: 5px;
-      margin-top: 20px
+    margin-right: 5px;
+    margin-top: 20px
   }
 }
 
@@ -2043,28 +2150,45 @@ body:last-child .popup_data_detail__arrow {
   text-align: center
 }
 
-.songlist__item--current .songlist__songname_txt:nth-child(1),.songlist__item:hover .songlist__songname_txt:nth-child(1) {
+.songlist__item--current .songlist__songname_txt:nth-child(1),
+.songlist__item:hover .songlist__songname_txt:nth-child(1) {
   max-width: 65%
 }
 
-.songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
+.songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
   max-width: 55%
 }
 
-.songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
+.songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
   max-width: 48%
 }
 
 @media (max-width: 1240px) {
-  .songlist__item--current .songlist__songname_txt:nth-child(1),.songlist__item:hover .songlist__songname_txt:nth-child(1) {
-      max-width:48%
+
+  .songlist__item--current .songlist__songname_txt:nth-child(1),
+  .songlist__item:hover .songlist__songname_txt:nth-child(1) {
+    max-width: 48%
   }
 
-  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt,.songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
-      max-width: 42%
+  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+  .mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt,
+  .songlist__item--current .songlist__icon:nth-child(1)+.songlist__songname_txt,
+  .songlist__item:hover .songlist__icon:nth-child(1)+.songlist__songname_txt {
+    max-width: 42%
   }
 
-  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt,.songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,.songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
-      max-width: 32%
+  .mod_songlist--edit .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+  .mod_songlist--edit .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt,
+  .songlist__item--current .songlist__icon:nth-child(2)+.songlist__songname_txt,
+  .songlist__item:hover .songlist__icon:nth-child(2)+.songlist__songname_txt {
+    max-width: 32%
   }
+}
+
+.toplist_nav__link--current,
+.toplist_nav__link--current:hover {
+  background-color: #31c27c;
+  color: #fff;
 }

@@ -134,11 +134,11 @@
             text: "排行榜"
           },
           {
-            link: "https://y.qq.com/",
+            link: "/playlist",
             text: "分类歌单"
           },
           {
-            link: "https://y.qq.com/",
+            link: "/radio",
             text: "电台"
           },
           {

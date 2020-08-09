@@ -117,17 +117,41 @@ export default ({
     /**
      * 排行榜 分类
      */
-    topCategory (showDetail = 0) {
-      return $request.get('/top/category', {showDetail: showDetail})
+    topCategory(showDetail = 0) {
+      return $request.get('/top/category', {
+        showDetail: showDetail
+      })
     },
     /**
      * 排行榜榜单详情
      */
-    topDetail( params = {
+    topDetail(params = {
       id: 4,
       pageSize: 20
     }) {
       return $request.get('/top', params)
+    },
+    /**
+     * 获取歌单分类
+     */
+    songListCategory() {
+      return $request.get('/songlist/category')
+    },
+    /**
+     * 根据分类获取歌单
+     * @param {number} pageNo 默认 1
+     * @param {number} pageSize: 默认 20
+     * @param {number} sort // 5: 推荐，2: 最新，其他数字的排列值最后都会返回推荐
+     * @param {number} category 分类 id，默认 10000000 （全部），其他值从上面的分类接口获取
+     */
+    songList(params) {
+      return $request.get('/songlist/list', params)
+    },
+    /**
+     * 电台分类
+     */
+    radioCategory() {
+      return $request.get('/radio/category')
     },
   }
   inject('api', apiList)
