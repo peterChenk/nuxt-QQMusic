@@ -56,6 +56,7 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/request.js',
     '~/plugins/api.js',
+    '~/plugins/vue-global.js',
     {
       src: "~/plugins/vue-swiper.js",
       ssr: false
