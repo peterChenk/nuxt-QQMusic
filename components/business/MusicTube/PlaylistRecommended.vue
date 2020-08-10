@@ -30,7 +30,7 @@
                 :data-disstid="item.content_id">
               <div class="playlist__item_box">
                 <div class="playlist__cover mod_cover">
-                  <a href="https://y.qq.com/n/yqq/playsquare/7403740989.html#stat=y_new.index.playlist.pic"
+                  <nuxt-link :to="'/playlistDetail/' + item.content_id"
                      onclick="setStatCookie&amp;&amp;setStatCookie();"
                      class="js_playlist"
                      data-stat="y_new.index.playlist.pic"
@@ -40,7 +40,7 @@
                          :alt="item.title"
                          class="playlist__pic"><i class="mod_cover__mask"></i><i class="mod_cover__icon_play js_play"
                        data-stat="y_new.index.playlist.play_btn"></i>
-                  </a>
+                  </nuxt-link>
                 </div>
                 <h4 class="playlist__title">
                   <span class="playlist__title_txt"><a href="https://y.qq.com/n/yqq/playsquare/3274706383.html#stat=y_new.index.playlist.name"

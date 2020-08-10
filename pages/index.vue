@@ -35,10 +35,10 @@
     }) {
       // 为你推荐
       let recommendU = []
-      // const result = await app.$api.recommendU()
-      // if (result.data.result === 100) {
-      //   recommendU = result.data.data.list
-      // }
+      const result = await app.$api.recommendU()
+      if (result.data.result === 100) {
+        recommendU = result.data.data.list
+      }
       // 新歌首发--最新
       let newSongs = []
       // const nsResult = await app.$api.newSongs()

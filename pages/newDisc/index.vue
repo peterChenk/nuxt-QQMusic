@@ -44,7 +44,7 @@
 
                 <div class="playlist__author" :title="item.singers.name">
                   <a href="https://y.qq.com/n/yqq/singer/002XGxqI4HDz31.html" class="js_singer"
-                    :data-singermid="item.singers.mid">{{item.singers.name}}</a>
+                    :data-singermid="item.singers.mid">{{item.singers[0].name}}</a>
                 </div>
                 <div class="playlist__other">
                   {{item.release_time}}

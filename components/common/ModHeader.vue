@@ -150,7 +150,8 @@
             text: "数字专辑"
           },
           {
-            link: "https://y.qq.com/portal/piao_wu.html",
+            // link: "https://y.qq.com/portal/piao_wu.html",
+            link: '/playlistDetail',
             text: "票务"
           }
         ],

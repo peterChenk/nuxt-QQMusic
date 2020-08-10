@@ -51,15 +51,15 @@
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_mv" data-stat="y_new.mv_lib.mv_name"
                     :data-vid="item.vid" :title="item.title">{{item.title}}</a></h3>
 
-                <div class="mv_list__singer" title="Julian le Play">
+                <div class="mv_list__singer" :title="item.singers.name">
                   <a href="https://y.qq.com/n/yqq/singer/003TRNbd3cJYeN.html#stat=y_new.mv_lib.mv_singername"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_singer"
-                    data-stat="y_new.mv_lib.mv_singername" data-singermid="item.singers.mid" title="Julian le Play">
-                    {{item.singers.name}}</a>
+                    data-stat="y_new.mv_lib.mv_singername" :data-singermid="item.singers.mid" :title="item.singers.name">
+                    {{item.singers[0].name}}</a>
                 </div>
 
                 <div class="mv_list__info"><span class="mv_list__listen"><i
-                      class="mv_list__listen_icon sprite"></i>{{item.playcnt}}</span>{{item.pubdate}}</div>
+                      class="mv_list__listen_icon sprite"></i>{{item.playcnt | playVolume}}</span>{{item.pubdate | formatTime}}</div>
 
               </div>
             </li>
