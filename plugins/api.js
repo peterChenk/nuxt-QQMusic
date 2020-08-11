@@ -160,6 +160,20 @@ export default ({
     songList(id) {
       return $request.get('/songlist', {id: id})
     },
+    /**
+     * 获取歌曲详情
+     * @param {number} id 歌曲id 必填
+     */
+    songDetail(id) {
+      return $request.get('/song', {songmid: id})
+    },
+    /**
+     * 歌词
+     * @param {number} id 歌曲id 必填
+     */
+    lyric(id) {
+      return $request.get('/lyric', {songmid: id})
+    }
 
   }
   inject('api', apiList)

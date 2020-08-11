@@ -137,9 +137,10 @@
                        v-if="item.pay.payplay === 1"
                        title="VIP"></i>
 
-                    <span class="songlist__songname_txt"><a href="https://y.qq.com/n/yqq/song/000loibP1R1yFb.html"
+                    <span class="songlist__songname_txt">
+                      <nuxt-link :to="'/songDetail/' + item.songmid"
                          class="js_song"
-                         :title="item.songname">{{item.songname}}<span class="songlist__song_txt"></span></a></span>
+                         :title="item.songname">{{item.songname}}<span class="songlist__song_txt"></span></nuxt-link></span>
                     <div class="mod_list_menu">
                       <a href="javascript:;"
                          class="list_menu__item list_menu__play js_play"
