@@ -173,7 +173,14 @@ export default ({
      */
     lyric(id) {
       return $request.get('/lyric', {songmid: id})
-    }
+    },
+    /**
+     * 歌手介绍
+     * @param {number} id 歌手id 必填
+     */
+    singerDesc(id) {
+      return $request.get('/singer/desc', {singermid: id})
+    },
 
   }
   inject('api', apiList)

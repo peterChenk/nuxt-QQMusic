@@ -275,7 +275,7 @@ export default {
   @import "~/assets/scss/layout.css";
   .lyric__cont_box{
     font-size: 14px;
-    color: #333;
+    color: #666;
     line-height: 26px;
     // font-weight: bold;
   }

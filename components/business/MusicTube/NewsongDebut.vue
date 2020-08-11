@@ -20,7 +20,7 @@
                 <input type="checkbox" class="songlist__checkbox">
               </div>
               <div class="songlist__item_box" style="visibility: visible;">
-                <a href="https://y.qq.com/n/yqq/album/004M91mx3KeKTZ.html" title="等等" data-albummid="004M91mx3KeKTZ"
+                <a href="javascript:;" title="等等" data-albummid="004M91mx3KeKTZ"
                   data-albumid="13952172" class="album_name songlist__link mod_cover">
                   <img class="songlist__pic" :src="imgSrc(item)"
                     data-original="//y.gtimg.cn/music/photo_new/T002R90x90M000004M91mx3KeKTZ_1.jpg?max_age=2592000"
@@ -30,10 +30,10 @@
                   <i class="mod_cover__icon_play js_play" data-stat="y_new.index.new_song.play_btn"></i>
                 </a>
                 <div class="songlist__cont">
-                  <h3 class="songlist__song"><a
-                      href="https://y.qq.com/n/yqq/song/002fhYIS0whRav.html#stat=y_new.index.new_song.songname"
+                  <h3 class="songlist__song"><nuxt-link
+                      :to="'/songDetail/' + item.mid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" data-stat="y_new.index.new_song.songname"
-                      class="js_song" :title="item.title"><span class="songlist__song_txt">{{item.name}}</span></a></h3>
+                      class="js_song" :title="item.title"><span class="songlist__song_txt">{{item.name}}</span></nuxt-link></h3>
 
                   <p class="songlist__author" :title="item.singer.name">
 

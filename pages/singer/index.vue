@@ -77,19 +77,19 @@
 
             <li class="singer_list__item" v-for="(item, index) in singerList" :key="index">
               <div class="singer_list__item_box">
-                <a href="https://y.qq.com/n/yqq/singer/00067r4p0wBDDN.html#stat=y_new.singerlist.singerpic"
+                <nuxt-link :to="'/singerDetail/' + item.singer_mid"
                   onclick="setStatCookie&amp;&amp;setStatCookie();" class="singer_list__cover js_singer"
                   hidefocus="true" data-stat="y_new.singerlist.singerpic" :data-singermid="item.singer_mid"
                   :data-singerid="item.singer_id" :title="item.singer_name">
                   <img class="singer_list__pic"
                     onerror="this.src='//y.gtimg.cn/mediastyle/global/img/singer_300.png?max_age=2592000';this.onerror=null;"
                     :src="item.singer_pic" :alt="item.singer_name">
-                </a>
-                <h3 class="singer_list__title"><a
-                    href="https://y.qq.com/n/yqq/singer/00067r4p0wBDDN.html#stat=y_new.singerlist.singername"
+                </nuxt-link>
+                <h3 class="singer_list__title"><nuxt-link
+                    :to="'/singerDetail/' + item.singer_mid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" :data-singermid="item.singer_mid"
                     :data-id="item.singer_id" class="js_singer" data-stat="y_new.singerlist.singername"
-                    :title="item.singer_name">{{item.singer_name}}</a></h3>
+                    :title="item.singer_name">{{item.singer_name}}</nuxt-link></h3>
               </div>
             </li>
           </ul>

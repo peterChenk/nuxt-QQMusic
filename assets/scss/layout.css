@@ -1735,7 +1735,7 @@ body:last-child .popup_data_detail {
   right: -11px;
   width: 11px;
   height: 17px;
-  /* background: url(img/popup_arrow.png?max_age=2592000&v=fe1b5de60da82af886ead697a54db984) 0 -17px no-repeat */
+  background: url(../img/popup_arrow.png?max_age=2592000&v=fe1b5de60da82af886ead697a54db984) 0 -17px no-repeat
 }
 
 body:last-child .popup_data_detail__arrow {

@@ -41,10 +41,10 @@
       }
       // 新歌首发--最新
       let newSongs = []
-      // const nsResult = await app.$api.newSongs()
-      // if (nsResult.data.result === 100) {
-      //   newSongs = nsResult.data.data.list
-      // }
+      const nsResult = await app.$api.newSongs()
+      if (nsResult.data.result === 100) {
+        newSongs = nsResult.data.data.list
+      }
       // 精彩推荐
       let wonderfulRecommend = []
       // const wfResult = await app.$api.wonderfulRecommend()
