@@ -153,6 +153,14 @@ export default ({
     radioCategory() {
       return $request.get('/radio/category')
     },
+    /**
+     * 获取歌单详情
+     * @param {number} id 歌单id 必填
+     */
+    songList(id) {
+      return $request.get('/songlist', {id: id})
+    },
+
   }
   inject('api', apiList)
 }

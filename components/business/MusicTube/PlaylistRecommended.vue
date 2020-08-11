@@ -43,11 +43,13 @@
                   </nuxt-link>
                 </div>
                 <h4 class="playlist__title">
-                  <span class="playlist__title_txt"><a href="https://y.qq.com/n/yqq/playsquare/3274706383.html#stat=y_new.index.playlist.name"
+                  <span class="playlist__title_txt">
+                    <nuxt-link :to="'/playlistDetail/' + item.content_id"
                        onclick="setStatCookie&amp;&amp;setStatCookie();"
                        class="js_playlist"
                        data-stat="y_new.index.playlist.name"
-                       :data-disstid="item.content_id">{{item.title}}</a></span>
+                       :data-disstid="item.content_id">{{item.title}}</nuxt-link>
+                  </span>
                 </h4>
                 <div class="playlist__other">
                   播放量：{{unitConversion(item.listen_num || item.access_num)}}万
