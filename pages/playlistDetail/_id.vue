@@ -138,7 +138,7 @@
                        title="VIP"></i>
 
                     <span class="songlist__songname_txt">
-                      <nuxt-link :to="'/songDetail/' + item.songmid"
+                      <nuxt-link :to="{path: '/songDetail/' + item.songmid, query: { songId: item.songid }}"
                          class="js_song"
                          :title="item.songname">{{item.songname}}<span class="songlist__song_txt"></span></nuxt-link></span>
                     <div class="mod_list_menu">

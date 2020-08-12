@@ -31,7 +31,7 @@
                 </a>
                 <div class="songlist__cont">
                   <h3 class="songlist__song"><nuxt-link
-                      :to="'/songDetail/' + item.mid"
+                      :to="{path: '/songDetail/' + item.mid, query: { songId: item.id }}"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" data-stat="y_new.index.new_song.songname"
                       class="js_song" :title="item.title"><span class="songlist__song_txt">{{item.name}}</span></nuxt-link></h3>
 

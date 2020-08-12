@@ -175,13 +175,73 @@ export default ({
       return $request.get('/lyric', {songmid: id})
     },
     /**
+     * 相关歌单
+     * @param {number} id 歌曲id 必填
+     */
+    songPlaylist(songid) {
+      return $request.get('/song/playlist', {id: songid})
+    },
+    /**
+     * 相关MV
+     * @param {number} id 歌曲id 必填
+     */
+    songMV(songid) {
+      return $request.get('/song/mv', {id: songid})
+    },
+    /**
      * 歌手介绍
-     * @param {number} id 歌手id 必填
+     * @param {number} singermid 歌手id 必填
      */
     singerDesc(id) {
       return $request.get('/singer/desc', {singermid: id})
     },
-
+    /**
+     * 获取热门歌曲
+     * @param {number} singermid 歌手id 必填
+     * @param {number} num 返回歌曲数量
+     */
+    singerSongs(id, num=10) {
+      return $request.get('/singer/songs', {singermid: id})
+    },
+    /**
+     * 获取歌手专辑
+     * @param {number} singermid 歌手id 必填
+     * @param {number} pageNo 默认 1
+     * @param {number} pageSize 默认 20
+     */
+    singerAlbum(id, pageSize=5) {
+      return $request.get('/singer/album', {singermid: id, pageSize: pageSize})
+    },
+    /**
+     * 获取歌手MV
+     * @param {number} singermid 歌手id 必填
+     * @param {number} pageNo 默认 1
+     * @param {number} pageSize 默认 20
+     */
+    singerMV(id, pageSize=5) {
+      return $request.get('/singer/mv', {singermid: id, pageSize: pageSize})
+    },
+    /**
+     * 相似歌手
+     * @param {number} singermid 歌手id 必填
+     */
+    singerSim(id) {
+      return $request.get('/singer/sim', {singermid: id})
+    },
+    /**
+     * 获取专辑信息
+     * @param {number} albummid 专辑id 必填
+     */
+    album(id) {
+      return $request.get('/album', {albummid: id})
+    },
+    /**
+     * 获取专辑内的歌曲
+     * @param {number} albummid 专辑id 必填
+     */
+    albumSongs(id) {
+      return $request.get('/album/songs', {albummid: id})
+    },
   }
   inject('api', apiList)
 }

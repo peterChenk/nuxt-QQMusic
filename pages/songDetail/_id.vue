@@ -23,25 +23,26 @@
                :title="songData.track_info.singer.title">
             <i class="icon_singer sprite"></i>
 
-            <a href="//y.qq.com/n/yqq/singer/001jDBSD0zRhYh.html"
-               data-mid="001jDBSD0zRhYh"
-               :title="songData.track_info.singer.title"
-               class="data__singer_txt js_singer"
-               data-stat="y_new.song.header.singername"
-               itemprop="byArtist">{{songData.track_info.singer[0].name}}</a>
+            <nuxt-link :to="'/singerDetail/' + songData.track_info.singer[0].mid"
+                       data-mid="001jDBSD0zRhYh"
+                       :title="songData.track_info.singer.title"
+                       class="data__singer_txt js_singer"
+                       data-stat="y_new.song.header.singername"
+                       itemprop="byArtist">{{songData.track_info.singer[0].name}}</nuxt-link>
 
           </div>
 
           <ul class="data__info">
 
             <li class="data_info__item data_info__item--even">专辑：
-              <nuxt-link :to="'/playlistDetail/' + songData.track_info.album.id"
-                 itemprop="inAlbum"
-                 class="js_album"
-                 data-stat="y_new.song.header.albumname"
-                 :data-albummid="songData.track_info.mid"
-                 :data-albumid="songData.track_info.album.id"
-                 :title="songData.track_info.album.title">{{songData.track_info.album.name}}</nuxt-link></li>
+              <nuxt-link :to="'/Album/' + songData.track_info.album.mid"
+                         itemprop="inAlbum"
+                         class="js_album"
+                         data-stat="y_new.song.header.albumname"
+                         :data-albummid="songData.track_info.mid"
+                         :data-albumid="songData.track_info.album.id"
+                         :title="songData.track_info.album.title">{{songData.track_info.album.name}}</nuxt-link>
+            </li>
 
             <li class="data_info__item js_lan"
                 style="">语种：{{songData.info.lan.content[0].value}}</li>
@@ -52,6 +53,7 @@
                 style="display: none;">唱片公司：</li>
 
             <li class="data_info__item js_public_time"
+                v-if="songData.info.pub_time"
                 style="">发行时间：{{songData.info.pub_time.content[0].value}}</li>
 
           </ul>
@@ -107,116 +109,104 @@
           </div>
         </div>
         <div class="detail_layout__other">
-          <div class="mod_about"
-               id="album_desc"
-               style="display:none;">
+          <div class="mod_about" id="album_desc" v-if="songData.info.intro && songData.info.intro.content">
             <h3 class="about__tit">简介</h3>
-            <div class="about__cont"></div>
-            <a href="javascript:;"
-               class="about__more"
-               data-stat="y_new.song.moreinfo"
-               data-left="0"
-               data-top="-185"
-               data-target="popup_data_detail"
-               style="display: none;">[更多]</a>
+              <div class="about__cont">
+                {{songData.info.intro.content[0].value}}
+              </div>
+              <a href="javascript:;" class="about__more" data-stat="y_new.song.moreinfo" 
+              @click="popup_data_detail = !popup_data_detail"
+              data-left="0" data-top="-185" data-target="popup_data_detail">[更多]</a>
           </div>
 
-          <!-- <div class="other_part"
+          <div class="other_part"
                style=""
                id="song_playlist">
             <h3 class="other_part__tit">相关热门歌单</h3>
             <div class="mod_playlist">
               <ul class="playlist__list">
+
                 <li class="playlist__item"
+                    v-for="(item, index) in songPlaylist"
+                    :key="index"
                     onmouseover="this.className=(this.className+' playlist__item--hover')"
                     onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')"
-                    data-disstid="7667451063">
+                    :data-disstid="item.tid">
                   <div class="playlist__item_box">
-                    <div class="playlist__cover mod_cover"><a href="https://y.qq.com/n/yqq/playlist/7667451063.html#stat=y_new.song.hotgedan.click"
-                         onclick="setStatCookie&amp;&amp;setStatCookie();"
-                         class="js_playlist"
-                         data-stat="y_new.song.hotgedan.click"
-                         data-disstid="7667451063"><img src="//qpic.y.qq.com/music_cover/PzEEYicJE1PjnAm5GQ7Ez47oF8dkSKjzsmqiaOicwlYTTZE16X2ZLu3nA/300"
-                             alt="古风｜一叶为灵，窥见全秋"
+                    <div class="playlist__cover mod_cover">
+                      <nuxt-link :to="'/playlistDetail/' + item.tid"
+                                 onclick="setStatCookie&amp;&amp;setStatCookie();"
+                                 class="js_playlist"
+                                 data-stat="y_new.song.hotgedan.click"
+                                 data-disstid="item.tid"><img :src="item.imgurl"
+                             :alt="item.dissname"
                              class="playlist__pic"><i class="mod_cover__icon_play js_play"
-                           data-stat="y_new.song.hotgedan.play"></i></a></div>
-                    <h4 class="playlist__title"><span class="playlist__title_txt"><a href="https://y.qq.com/n/yqq/playlist/7667451063.html#stat=y_new.song.hotgedan.click"
-                           onclick="setStatCookie&amp;&amp;setStatCookie();"
-                           class="js_playlist"
-                           data-stat="y_new.song.hotgedan.click"
-                           data-disstid="7667451063"
-                           title="古风｜一叶为灵，窥见全秋">古风｜一叶为灵，窥见全秋</a></span></h4>
+                           data-stat="y_new.song.hotgedan.play"></i></nuxt-link>
+                    </div>
+                    <h4 class="playlist__title"><span class="playlist__title_txt">
+                        <nuxt-link :to="'/playlistDetail/' + item.tid"
+                                   onclick="setStatCookie&amp;&amp;setStatCookie();"
+                                   class="js_playlist"
+                                   data-stat="y_new.song.hotgedan.click"
+                                   data-disstid="7667451063"
+                                   :title="item.dissname">{{item.dissname}}</nuxt-link>
+                      </span></h4>
                     <div class="playlist__author">
-                      墨染潇湘
+                      {{item.creator}}
                     </div>
                   </div>
                 </li>
 
-                <li class="playlist__item"
-                    onmouseover="this.className=(this.className+' playlist__item--hover')"
-                    onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')"
-                    data-disstid="7664339894">
-                  <div class="playlist__item_box">
-                    <div class="playlist__cover mod_cover"><a href="https://y.qq.com/n/yqq/playlist/7664339894.html#stat=y_new.song.hotgedan.click"
-                         onclick="setStatCookie&amp;&amp;setStatCookie();"
-                         class="js_playlist"
-                         data-stat="y_new.song.hotgedan.click"
-                         data-disstid="7664339894"><img src="//qpic.y.qq.com/music_cover/8mAIAcpkmye9A03R9Lpzo2YSynvpQRbYmibcOTKp0cjqk82vuian8XPQ/300"
-                             alt="古风小调：惊艳了时光"
-                             class="playlist__pic"><i class="mod_cover__icon_play js_play"
-                           data-stat="y_new.song.hotgedan.play"></i></a></div>
-                    <h4 class="playlist__title"><span class="playlist__title_txt"><a href="https://y.qq.com/n/yqq/playlist/7664339894.html#stat=y_new.song.hotgedan.click"
-                           onclick="setStatCookie&amp;&amp;setStatCookie();"
-                           class="js_playlist"
-                           data-stat="y_new.song.hotgedan.click"
-                           data-disstid="7664339894"
-                           title="古风小调：惊艳了时光">古风小调：惊艳了时光</a></span></h4>
-                    <div class="playlist__author">
-                      丢三丢四也丢不了你
-                    </div>
-                  </div>
-                </li>
-
-                <li class="playlist__item"
-                    onmouseover="this.className=(this.className+' playlist__item--hover')"
-                    onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')"
-                    data-disstid="7661728990">
-                  <div class="playlist__item_box">
-                    <div class="playlist__cover mod_cover"><a href="https://y.qq.com/n/yqq/playlist/7661728990.html#stat=y_new.song.hotgedan.click"
-                         onclick="setStatCookie&amp;&amp;setStatCookie();"
-                         class="js_playlist"
-                         data-stat="y_new.song.hotgedan.click"
-                         data-disstid="7661728990"><img src="//qpic.y.qq.com/music_cover/AsdD7uJia1ichicGb60jUia0fHnaStibcVIz3z8hnOwZCJ3tX8BMdnaOVtg/300"
-                             alt="古风男嗓 | 杯酒之间 尽是江湖"
-                             class="playlist__pic"><i class="mod_cover__icon_play js_play"
-                           data-stat="y_new.song.hotgedan.play"></i></a></div>
-                    <h4 class="playlist__title"><span class="playlist__title_txt"><a href="https://y.qq.com/n/yqq/playlist/7661728990.html#stat=y_new.song.hotgedan.click"
-                           onclick="setStatCookie&amp;&amp;setStatCookie();"
-                           class="js_playlist"
-                           data-stat="y_new.song.hotgedan.click"
-                           data-disstid="7661728990"
-                           title="古风男嗓 | 杯酒之间 尽是江湖">古风男嗓 | 杯酒之间 尽是江湖</a></span></h4>
-                    <div class="playlist__author">
-                      零九九八
-                    </div>
-                  </div>
-                </li>
               </ul>
             </div>
-          </div> -->
+          </div>
 
           <div class="other_part"
+                v-if="songMV"
                id="song_mv">
+            <h3 class="other_part__tit">相关MV</h3>
+            <div class="mod_mv_list">
+              <div class="mv_list__item_box"
+                   data-vid=""
+                   :data-id="songMV.mvid">
+                <a href="https://y.qq.com/n/yqq/mv/v/d0025jq894n.html"
+                   class="mv_list__cover mod_cover js_mv"
+                   data-vid="songMV.vid"
+                   data-id="songMV.mvid"
+                   hidefocus="true">
+                  <img class="mv_list__pic"
+                       :src="songMV.picurl"
+                       onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
+                       alt="songMV.title">
+                  <i class="mod_cover__icon_play"></i>
+                </a>
+                <h3 class="mv_list__title"><a href="https://y.qq.com/n/yqq/mv/v/d0025jq894n.html"
+                     class="js_mv"
+                     data-vid="songMV.vid"
+                     data-id="songMV.mvid"
+                     :title="songMV.title">{{songMV.title}}</a></h3>
+
+                <p class="mv_list__singer"
+                    v-if="songMV.singers.length > 0"
+                   :title="songMV.singers[0].name">
+
+                  <nuxt-link :to="'/singerDetail/' + songMV.singers[0].mid"
+                     data-mid="songMV.singers[0].mid"
+                     :title="songMV.singers[0].name"
+                     class="js_singer"> {{songMV.singers[0].name}} </nuxt-link>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
       <div class="popup_data_detail"
            id="popup_data_detail"
-           style="display:none;">
+           v-if="popup_data_detail">
         <div class="popup_data_detail__cont">
           <h3 class="popup_data_detail__tit">专辑简介</h3>
-          <p></p>
+          {{songData.info.intro.content[0].value}}
         </div>
         <i class="popup_data_detail__arrow"></i>
       </div>
@@ -225,7 +215,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       songData: {
         info: {
@@ -240,10 +230,13 @@ export default {
           }
         }
       },
-      lyricData: ''
+      lyricData: '',
+      songPlaylist: [],
+      songMV: [],
+      popup_data_detail: false
     }
   },
-  async asyncData({app, params}){
+  async asyncData ({ app, params, query }) {
     let songData = []
     let res = await app.$api.songDetail(params.id)
     if (res.data.result === 100) {
@@ -256,10 +249,24 @@ export default {
       // alert(str.replace(/\[|]/g,''));//移除字符串中的所有[]括号（不包括其内容）
       // lyric.replace(/\[.*?\]/g,'') //移除字符串中的所有[]括号（包括其内容）
     }
+    // 相关歌单
+    let songPlaylist = []
+    let reslist = await app.$api.songPlaylist(query.songId)
+    if (reslist.data.result === 100) {
+      songPlaylist = reslist.data.data
+    }
+    // 相关MV
+    let songMV = []
+    let resMV = await app.$api.songMV(query.songId)
+    if (resMV.data.result === 100) {
+      songMV = resMV.data.data
+    }
 
     return {
       songData,
-      lyricData
+      lyricData,
+      songPlaylist,
+      songMV: songMV[0]
     }
 
   },
@@ -271,12 +278,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  @import "~/assets/scss/song_detail.css";
-  @import "~/assets/scss/layout.css";
-  .lyric__cont_box{
-    font-size: 14px;
-    color: #666;
-    line-height: 26px;
-    // font-weight: bold;
-  }
+@import "~/assets/scss/song_detail.css";
+@import "~/assets/scss/layout.css";
+.lyric__cont_box {
+  font-size: 14px;
+  color: #666;
+  line-height: 26px;
+  // font-weight: bold;
+}
 </style>
