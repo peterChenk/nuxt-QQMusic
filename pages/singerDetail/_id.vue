@@ -123,12 +123,12 @@
                        v-if="item.isonly === 1"
                        title="独家"></i>
 
-                    <a href="//y.qq.com/n/yqq/mv/v/w0026q7f01a.html"
+                    <nuxt-link :to="'/MVDetail/' + item.mv.vid"
                        class="songlist__icon songlist__icon_mv sprite"
                        rel="noopener"
                        target="_blank"
                        v-if="item.mv.vid"
-                       title="MV"><span class="icon_txt">MV</span></a>
+                       title="MV"><span class="icon_txt">MV</span></nuxt-link>
 
                     <span class="songlist__songname_txt"><nuxt-link :to="{path: '/songDetail/' + item.mid, query: { songId: item.id }}"
                          class="js_song"

@@ -242,6 +242,21 @@ export default ({
     albumSongs(id) {
       return $request.get('/album/songs', {albummid: id})
     },
+    /**
+     * 获取mv信息
+     * @param {number} vid 视频的 vid 必填
+     */
+    mvInfo(vid) {
+      return $request.get('/mv', {id: vid})
+    },
+    /**
+     * 获取 MV 播放链接
+     * @param {number} vid 视频的 vid 必填
+     */
+    mvUrl(vid) {
+      return $request.get('/mv/url', {id: vid})
+    },
+
   }
   inject('api', apiList)
 }
