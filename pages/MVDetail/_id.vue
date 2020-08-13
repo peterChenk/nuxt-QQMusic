@@ -203,24 +203,27 @@
                 <a href="javascript:;"
                    title="暂停"
                    class="video_player__btn js_qv_ctrl_play play"
+                   @click="playAndpause()"
                    style="display:">
                   <span class="icon_txt">暂停</span>
                   <svg class="video_player__icon">
 
                     <!-- 播放 用video_player_play这个id 暂停 用video_player_pause 这个id -->
-                    <use xlink:href="#video_player_play"></use>
+                    <use xlink:href="#video_player_pause" v-if="isPlay"></use>
+                    <use xlink:href="#video_player_play" v-else></use>
+
                   </svg>
                 </a>
 
                 <!-- 操作 下一首 -->
-                <a href="javascript:;"
+                <!-- <a href="javascript:;"
                    title="下一首"
                    class="video_player__btn next js_qv_ctrl_next qv_hide">
                   <span class="icon_txt">下一首</span>
                   <svg class="video_player__icon">
                     <use xlink:href="#video_player_next"></use>
                   </svg>
-                </a>
+                </a> -->
 
                 <!-- hover 下一首 显示浮层 -->
                 <!-- <div class="video_popup_tips video_popup_next js_qv_ctrl_next_hover qv_hide">
@@ -248,6 +251,7 @@
                 <!-- 操作 音量 选中 加current -->
                 <a href="javascript:;"
                    title="音量"
+                   @click="volume_change = !volume_change"
                    class="video_player__btn voice js_qv_ctrl_voice">
                   <span class="icon_txt">音量</span>
                   <svg class="video_player__icon middle">
@@ -256,7 +260,7 @@
                 </a>
 
                 <!-- 点击 音量 显示音量浮层 -->
-                <div class="video_popup_tips video_popup_voice js_qv_volume_change qv_hide" style="display: none">
+                <div class="video_popup_tips video_popup_voice js_qv_volume_change qv_hide" v-if="volume_change">
                   <div class="video_popup_tips__cont">
                     <div class="video_popup_voice__box js_qv_volume_change_line">
                       <div class="video_popup_voice__state js_volume_state"
@@ -275,33 +279,33 @@
                 <!-- 操作 播放模式 点击切换 -->
                 <a href="javascript:;"
                    title="循环播放"
+                   @click="playerloop"
                    class="video_player__btn style js_qv_ctrl_play_mode">
                   <span class="icon_txt">循环播放</span>
                   <svg class="video_player__icon">
                     <!--播放模式 循环播放 id video_player_list 随机播放 id video_player_random -->
                     <use xlink:href="#video_player_list"></use>
                   </svg>
-                  <span class="video_player__icon_one js_qv_ctrl_play_mode_one qv_hide"></span>
+                  <span class="video_player__icon_one js_qv_ctrl_play_mode_one" v-if="MediaLoop" :class="{'qv_hide': !MediaLoop}"></span>
                 </a>
 
                 <!-- 操作 品质 选中 加current -->
                 <a href="javascript:;"
-                   class="video_player__btn quility js_qv_ctrl_play_quility">超清</a>
+                   @click="video_popup_quility = true"
+                   class="video_player__btn quility js_qv_ctrl_play_quility">{{videoQuility}}</a>
                 <!-- 点击 品质 显示品质浮层 -->
-                <div class="video_popup_tips video_popup_quility js_qv_ctrl_play_quility_detail qv_hide" style="display: none">
+                <div class="video_popup_tips video_popup_quility js_qv_ctrl_play_quility_detail" v-if="video_popup_quility">
                   <div class="video_popup_tips__cont">
-                    <a href="javascript:;"
+                    <!-- <a href="javascript:;"
                        class="video_popup_quility__item js_quility_item current qv_hide"
-                       data-type="40">全高清1080P</a>
+                       data-type="40">全高清1080P</a> -->
                     <a href="javascript:;"
-                       class="video_popup_quility__item js_quility_item current"
-                       data-type="30">超清720P</a>
-                    <a href="javascript:;"
+                       v-for="(item, index) in video_popup_quility_List" :key="index"
                        class="video_popup_quility__item js_quility_item"
-                       data-type="20">高清480P</a>
-                    <a href="javascript:;"
-                       class="video_popup_quility__item js_quility_item"
-                       data-type="10">标清360P</a>
+                       :class="{'current': currentIdx === index}"
+                       @click="changeQuility(item, index)"
+                       data-type="30">{{item.name}}</a>
+                    
                   </div>
                   <svg class="video_popup_tips__arrow middle">
                     <use xlink:href="#video_player_arrow"></use>
@@ -311,11 +315,13 @@
                 <!-- 操作 全屏 -->
                 <a href="javascript:;"
                    title="全屏"
+                   @click="video_FullScreen()"
                    class="video_player__btn max js_qv_fullscreen">
                   <span class="icon_txt">全屏</span>
                   <svg class="video_player__icon">
                     <!-- 操作 全屏 id video_player_max 取消全屏 id video_player_normal-->
-                    <use xlink:href="#video_player_max"></use>
+                    <use xlink:href="#video_player_normal" v-if="isFullScreen"></use>
+                    <use xlink:href="#video_player_max" v-else></use>
                   </svg>
                 </a>
 
@@ -487,7 +493,19 @@ export default {
   data () {
     return {
       mvInfo: {},
-      mvUrl: ''
+      mvUrl: '',
+      isPlay: true,
+      volume_change: false,
+      MediaLoop: false,
+      video_popup_quility: false,
+      video_popup_quility_List: [
+        {name: '超清720P', label: '超清', value: 2},
+        {name: '高清480P', label: '高清',value: 1},
+        {name: '标清360P', label: '标清',value: 0},
+      ],
+      currentIdx: 0,
+      videoQuility: '超清',
+      isFullScreen: false
     }
   },
   async asyncData ({app, params}) {
@@ -497,16 +515,77 @@ export default {
       mvInfo = res.data.data
     }
     // mv url
-    let mvUrl = []
+    let mvUrl = ''
+    let mvUrlList = []
     let resUrl = await app.$api.mvUrl(params.id)
     if (resUrl.data.result === 100) {
-      mvUrl = resUrl.data.data[params.id]
+      mvUrlList = resUrl.data.data[params.id]
     }
 
     return {
       mvInfo,
-      mvUrl: mvUrl[0]
+      mvUrl: mvUrlList[mvUrlList.length - 1],
+      mvUrlList
     }
+  },
+  methods: {
+    playAndpause () {
+      let play = this.isPlay
+      const Media = document.getElementById("video_player__source"); 
+      if (play) {
+        Media.pause(); //暂停
+        play = false
+      }else {
+        Media.play() // 播放
+        play = true
+      }
+      this.isPlay = play
+    },
+    playerloop () {
+      const Media = document.getElementById("video_player__source")
+      this.MediaLoop = !this.MediaLoop
+      Media.loop = this.MediaLoop
+    },
+    changeQuility (item, index) {
+      this.currentIdx = index
+      this.videoQuility = item.label
+      this.video_popup_quility = false
+      this.mvUrl = this.mvUrlList[item.value]
+    },
+    video_FullScreen () {
+      const Media = document.getElementById("video_player__source")
+      this.isFullScreen = !this.isFullScreen
+      if (this.isFullScreen) {
+        // this.exitFullscreen()
+      } else {
+        this.FullScreen(Media)
+      }
+    },
+    FullScreen (element) {
+      if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullScreen();
+        }
+    },
+    exitFullscreen () {
+      if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+            document.msExiFullscreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+
   }
 }
 </script>
