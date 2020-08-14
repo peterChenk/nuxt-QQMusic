@@ -110,6 +110,7 @@
                      preload="metadata"
                      muted="muted"
                      autoplay="autoplay"
+                     oncanplaythrough="oncanplaythrough"
                      :src="mvUrl"></video>
 
               <!-- 封面 -->
@@ -528,6 +529,37 @@ export default {
       mvUrlList
     }
   },
+  mounted() {
+    const Media = document.getElementById("video_player__source"); 
+    Media.addEventListener("canplaythrough", function()
+      {
+        console.log('视频加载完成')
+        console.log('video.currentTime', Media.currentTime)
+        console.log('video.duration', Media.duration)
+      }
+    );
+    //监听播放时间
+
+    //使用事件监听方式捕捉事件
+
+    Media.addEventListener("timeupdate",function(){
+
+        var timeDisplay;
+
+        //用秒数来显示当前播放进度
+
+        timeDisplay = Math.floor(Media.currentTime);
+
+        console.log(Math.floor(Media.currentTime))
+
+        //当视频播放到 4s的时候做处理
+
+        if(timeDisplay == 4){
+            //处理代码
+        }
+
+    },false);
+  },
   methods: {
     playAndpause () {
       let play = this.isPlay
@@ -560,6 +592,13 @@ export default {
       } else {
         this.FullScreen(Media)
       }
+    },
+    // 视频加载完成
+    oncanplaythrough () {
+      console.log('视频加载完成')
+      const Media = document.getElementById("video_player__source")
+      console.log('video.currentTime', Media.currentTime)
+      console.log('video.duration', Media.duration)
     },
     FullScreen (element) {
       if (element.requestFullscreen) {
