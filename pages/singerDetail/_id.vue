@@ -134,12 +134,12 @@
                          class="js_song"
                          :title="item.name">{{item.name}}</nuxt-link></span>
                     <div class="mod_list_menu">
-                      <a href="//y.qq.com/portal/player.html"
+                      <nuxt-link :to="'/player/' + item.mid"
                          class="list_menu__item list_menu__play js_play"
                          title="播放">
                         <i class="list_menu__icon_play"></i>
                         <span class="icon_txt">播放</span>
-                      </a>
+                      </nuxt-link>
                       <a href="javascript:;"
                          class="list_menu__item list_menu__add js_fav"
                          title="添加到歌单"
