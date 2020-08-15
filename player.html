@@ -1,0 +1,337 @@
+<body>
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入jQuery -->
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <!-- 引入jQuery滚动条插件 -->
+    <script src="https://cdn.bootcss.com/jquery.nicescroll/3.7.6/jquery.nicescroll.js"></script>
+    <style>
+      .container {
+        width: 400px;
+        height: 480px;
+        margin: auto;
+        background-color: aqua;
+        opacity: 0.5;
+      }
+
+      .lrc {
+        height: 430px;
+      }
+
+      .lrc p {
+        margin: 0;
+        padding: 0;
+        height: 30px;
+        text-align: center;
+      }
+
+      .controls {
+        height: 40px;
+
+      }
+
+      .controls>div {
+        float: left;
+      }
+
+      .play {
+        width: 40px;
+        height: 25px;
+        border: 1px solid #000;
+        margin-left: 5px;
+        margin-top: 5px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .information {
+        width: 250px;
+        height: 45px;
+        margin-left: 7px;
+
+      }
+
+      .information>div {
+        float: left;
+      }
+
+      .tab {
+        width: 100%;
+      }
+
+      .progress {
+        width: 100%;
+      }
+
+      .current_time {
+        float: left;
+      }
+
+      .total_time {
+        float: right;
+      }
+
+      .pro1 {
+        width: 170px;
+        height: 3px;
+        background-color: rgba(225, 225, 225, 0.5);
+        float: left;
+        margin-top: 10px;
+        margin-left: 5px;
+        border-radius: 1px;
+        position: relative;
+      }
+
+      .pro2 {
+        width: 0px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .dolt {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        top: -3px;
+        left: 0;
+      }
+
+      .vo_pro1 {
+        width: 50px;
+        height: 3px;
+        background-color: rgba(225, 225, 225, 0.5);
+        float: left;
+        margin-top: 10px;
+        margin-left: 5px;
+        border-radius: 1px;
+        position: relative;
+      }
+
+      .vo_pro2 {
+        width: 30px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .vo_dolt {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #fff;
+        position: absolute;
+        top: -3px;
+        left: 30px;
+      }
+
+      .volt {
+        float: left;
+        margin-top: 15px;
+        margin-left: 5px;
+      }
+
+      .volt>div {
+        float: left;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <audio
+      src="http://117.169.85.17/amobile.music.tc.qq.com/C400001C6D2t16JwTH.m4a?guid=9338449776&vkey=C49575106C2A97ED5A4AF3E4AD6FC485DD841D43BB041A1B814E256E6C23D6CFBA3A7695AEAD3DA048F2041ABCD4521A30FBBA38A79EE0B5&uin=3751&fromtag=66"
+      id="audio"></audio>
+    <div class="container">
+      <div class="lrc">
+      </div>
+      <div class="controls">
+        <div class="play">播放</div>
+        <div class="information">
+          <div class="tab"><span>阿泱 </span>~<span>白山茶</span></div>
+          <div class="progress">
+            <span class="current_time">00:00</span>
+            <div class="pro1">
+              <div class="pro2">
+                <div class="dolt"></div>
+              </div>
+            </div>
+            <span class="total_time">00:00</span>
+          </div>
+        </div>
+        <div class="volt">
+          <div>音量</div>
+          <div class="vo_pro1">
+            <div class="vo_pro2">
+              <div class="vo_dolt"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      // 滚动条组件的使用
+      $(".lrc").niceScroll({
+        cursorcolor: "aqua ", // 设置颜色
+        cursoropacitymax: 1,
+        touchbehavior: false,
+        cursorwidth: "5px", // 宽度
+        cursorborder: "0",
+        cursorborderradius: "5px" // 圆角
+      });
+      // 一般网络请求的歌曲数据格式
+      const data =
+        "[ti:白山茶]\n[ar:阿泱]\n[al:你の阿泱]\n[by:]\n[offset:0]\n[00:00.00]白山茶 - 阿泱\n[00:10.74]词：陈雪凝\n[00:21.49]曲：陈雪凝\n[00:32.24]我不是在等你\n[00:34.13]我只是在等爱你的心死\n[00:38.96]\n[00:39.91]在某年 在某月\n[00:42.01]在某个 波澜不惊 日子里\n[00:46.58]可但世间风景千般万般熙攘过后\n[00:54.10]\n[00:54.85]字里行间 人我两忘 相对无言\n[01:01.30]\n[01:02.85]大概是他 恰好钻进了你的心里\n[01:07.64]堵住了那片空白\n[01:10.30]才发现没有他\n[01:12.38]生命变得如此煎熬\n[01:17.35]\n[01:19.27]你认真的说你喜欢白山茶\n[01:23.46]怡然自得的收起别的红玫瑰\n[01:27.08]你温柔的说你眷恋我\n[01:30.72]然后迫不及待的爱别人\n[01:33.94]\n[01:34.94]你给我的感觉总是患得患失\n[01:39.04]就像寒夜里那冰冷的雨滴\n[01:42.60]一次次的猜疑 我失去了你\n[01:49.09]\n[01:50.93]贪恋了 脱身了 结束了 心碎了\n[01:54.67]突然想你了\n[01:57.63]\n[01:58.70]想索取 怕失去 在原地\n[02:01.59]\n心空虚 放过自己\n[02:05.53]时间会抹平一切\n[02:08.98]\n[02:09.50]即使岁月刺痛我伤疤\n[02:12.75]\n[02:13.82]就当我不曾出现 你也不曾遇见\n[02:20.71]\n[02:21.94]我爱你 你爱他\n[02:23.71]最后我 终究自食其果\n[02:26.24]陷入了你的骗局\n[02:28.97]你好好照顾她 今后我四海为家\n[02:37.11]\n[02:37.97]你认真的说你喜欢白山\n[02:41.93]怡然自得的收起别的红玫瑰\n[02:45.67]你温柔的说你眷恋我\n[02:49.40]然后迫不及待的爱别人\n[02:52.83]\n[02:53.62]你给我的感觉总是患得患失\n[02:57.49]你送我的花儿也慢慢凋谢\n[03:01.31]你说你有多爱我 却消失不见\n[03:07.90]\n[03:09.34]你坚定的眼神让我心神错乱\n[03:12.81]傻傻的我还沉浸在你我的梦境\n[03:16.66]\n[03:17.30]你温柔的将白山茶送给我\n[03:20.23]\n[03:20.76]笑着说你多么爱我很爱很爱我\n[03:24.13]\n[03:25.08]我用力钻进你的怀里聆听你心跳\n[03:28.98]我知道余生必定再戒不掉你\n[03:32.48]忽然你消失在我的身边化为红玫瑰\n[03:36.43]剩下我一个人 一朵白山茶"
+      // 以换行符将字符串拆分成数组，没有\n则可跳过下面这步
+      const lrcs = data.split('\n');
+      // 定义一个数组来分别保存数据和歌词
+      var rod = {
+        t: [],
+        p: [],
+      };
+      // 歌词解析函数
+      function tub() {
+        if (rod.p.length === 0) { // 避免多次点击播放按钮导致歌词多次渲染
+          for (var i in lrcs) { // 遍历歌词数组
+            var t = lrcs[i].substring(lrcs[i].indexOf("[") + 1, lrcs[i].indexOf("]")); //  取[]间的内容
+            s = t.split(":"); //分离:前后文字 
+            if (lrcs[i].substring(lrcs[i].lastIndexOf("]") + 1) == '') { // 截取]后面的歌词并筛选掉没有内容的歌词
+            } else if (isNaN(parseInt(s))) { // 判断[]的内容是否为数字，筛选掉没有时间的歌词
+            } else {
+              var s = parseInt(s[0] * 60) + Math.round(s[1]);
+              // 计算该条歌词搜对应的时间
+              rod.t.push(s); //将时间的数据全部放入到rod.t中
+              rod.p.push(lrcs[i].substring(lrcs[i].lastIndexOf("]") + 1)); // 将歌词的数据全部放入到rod.p中
+            }
+          }
+          rod.p.forEach(function (arg) { //遍历所有的歌词数组，动态创建p标签
+            var lis = document.createElement('p');
+            lis.innerHTML = arg;
+            $('.lrc').append(lis);
+          });
+        }
+
+
+      }
+      // 歌词渲染的函数
+      function fun() {
+        p_list = document.querySelectorAll('p'); // 获取所有的p标签
+        $('.lrc').scrollTop(0)
+        audio.ontimeupdate = function () {
+          var tim = Math.round(this.currentTime);
+          for (i in rod.t) {
+            if (parseInt(rod.t[i]) == tim) {
+              p_list.forEach(function (arg) {
+                arg.style.color = '';
+              });
+              p_list[i].style.color = 'blue';
+              p_list[i].style.fontSize = '18px';
+              if (i > 7) {
+                $(".lrc").scrollTop((i - 7) * 30);
+              }
+            }
+          }
+        }
+      }
+      // 进度条和音量条的事件
+      function tun(box, line, dot) {
+        var statu = false;
+        $(box).mousedown(function (e) {
+          cun(e);
+        });
+        $(document).mouseup(function () {
+          statu = false;
+        })
+        $(box).mousemove(function (e) {
+          if (statu === true) {
+            cun(e)
+          }
+        })
+        // 进度条的样式改变
+        function cun(e) {
+          var eleLeft = $(line).offset().left;
+          var eventLeft = e.pageX;
+          $(line).width(eventLeft - eleLeft);
+          $(dot).css('left', eventLeft - eleLeft)
+          if (eventLeft - eleLeft > $(line).width()) {
+            $(line).width($(box).width());
+          }
+          var timea = audio.duration;
+          var wid = $(".pro1").width();
+          var wid2 = $(".pro2").width();
+          var time3 = parseInt(wid2 / wid * timea)
+          audio.currentTime = time3
+          statu = true;
+        }
+      }
+      //时间处理函数
+      function tin(time) {
+        if (time < 60) {
+          return time = '00' + ':' + time.toString().padStart(2, '0'); // es6语法 不足两位，则在前头补‘0’
+        }
+        var ot = Math.floor(time / 60).toString().padStart(2, '0');
+        var oh = Math.floor(time % 60).toString().padStart(2, '0');
+        return time = ot + ":" + oh;
+
+      }
+      $(function () {
+        var timea = audio.duration;
+        var wid = $(".pro1").width();
+        $(".play").click(function () {
+          if (audio.paused) { // 判断是否播放
+            $(".play").html('暂停')
+            audio.play()
+            tub();
+            fun();
+
+          } else {
+            $(".play").html('播放');
+            audio.pause();
+
+          }
+        })
+        // 监听音乐时间变化
+
+
+
+
+        $('#audio').on("timeupdate", function () {
+          var times = parseInt(this.currentTime);
+          var tim = tin(timea); // 处理时间
+          var tid = tin(times); // 处理时间
+          $(".current_time").html(tid);
+          $(".total_time").html(tim);
+          var rat = times / timea * wid; // 比率系数
+          if (rat >= wid) {
+            rat = 0;
+          }
+          tun(".pro1", ".pro2", ".dolt")
+          $('.dolt').css('left', rat);
+          $('.pro2').width(rat);
+          tun(".vo_pro1", ".vo_pro2", ".vo_dolt")
+          var vol = $('.vo_pro1').width();
+          var vom = $(".vo_pro2").width();
+          this.volume = vom / vol; // 根据比率来设置声音
+
+        })
+      })
+
+    </script>
+  </body>
+
+  </html>

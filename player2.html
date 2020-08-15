@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- https://github.com/yuanqi3131/react-music -->
+  <audio autoPlay={true} controls={true} onPlayCapture={(e)=> { this.alreadyPlay(e) }}
+    onEnded={(e) => { this.endPlay(e) }}
+    onTimeUpdate={(e) => { this.timeUpdate(e) }}
+    src={url}></audio>
+
+  <script>
+    // 1.获取歌词以及处理
+    public async getLyric(id: number) { // 获得歌词 
+      let result = await reqLyric({
+        id
+      }) // ajax获得歌词
+      let lyricList = this.state.lyricList
+      result['lrc']['lyric'].split(/[\n]/) // 截取中括号
+        .forEach(item => {
+          let temp: Array < string > = item.split(/\[(.+?)\]/)
+          lyricList.push({
+            time: temp[1], // 时间
+            lyc: temp[2] //歌词内容
+          })
+        })
+      lyricList = lyricList.filter(v => v['lyc']) // 去除无歌词内容
+      this.setState({
+        lyric: result['lrc']['lyric'],
+        lyricList
+      })
+    }
+
+    // audio触发事件
+    public state: IState = {
+      lyricList: [], // 歌词数组
+      currentTime: '', // audio当前播放时间
+      currentLyc: 0, // 当前歌词
+      lycStyle: {} // 歌词滚动样式
+    }
+    public timeUpdate(e: any) { // 播放位置发生时改变触发
+      // 获取audio当前播放时间
+      let currentTime = this.format(document.getElementsByTagName('audio')[0]['currentTime']); // 事件转换
+      let {
+        currentLyc,
+        lyricList
+      } = this.state
+      for (let i: number = currentLyc; i < lyricList.length; i++) {
+        if (lyricList[i + 1] && currentTime < lyricList[i + 1]['time'] && currentTime > lyricList[i]['time']) {
+          this.setState({
+            currentLyc: i,
+            lycStyle: {
+              transform: `translateY(-${0.545 * i}rem)`
+            }
+          })
+        }
+      }
+    }
+
+    public format(value: number) { // 时间转换
+      if (!value) return ''
+      let interval = Math.floor(value)
+      let minute = (Math.floor(interval / 60)).toString().padStart(2, '0')
+      let second = (interval % 60).toString().padStart(2, '0')
+      return `${minute}:${second}`
+    }
+
+  </script>
+</body>
+
+</html>
