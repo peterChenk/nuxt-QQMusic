@@ -172,10 +172,10 @@
 
               <div class="video_player_tool js_qv_ctrl">
                 <!-- 进度 -->
-                <div class="video_player_tool__state js_qv_ctrl_bar">
+                <div class="video_player_tool__state js_qv_ctrl_bar" @click="setProgress($event)">
                   <div class="video_player_tool__state_bg"></div>
-                  <div class="video_player_tool__state_load js_qv_buffer_bar" style="width: 1.78462%;"></div>
-                  <div class="video_player_tool__state_progress js_qv_played_bar" style="width: 1.78462%;">
+                  <div class="video_player_tool__state_load js_qv_buffer_bar" :style="{width: currentPer + '%'}"></div>
+                  <div class="video_player_tool__state_progress js_qv_played_bar" :style="{width: currentPer + '%'}">
                     <div class="video_player_tool__state_progress_bg"></div>
                     <a href="javascript:;" class="video_player_tool__state_btn js_qv_time_cursor" style="z-index:4;">
                       <span class="icon_txt">进度按钮</span>
@@ -474,7 +474,8 @@
         videoQuility: '超清',
         isFullScreen: false,
         currentTime: '00:00',
-        duration: ''
+        duration: '',
+        currentPer: 0
       }
     },
     async asyncData({
@@ -505,34 +506,27 @@
       const Media = document.getElementById("video_player__source");
       Media.addEventListener("canplaythrough", function () {
         console.log('视频加载完成22')
-        console.log('video.duration', Media.duration)
         _this.duration = _this.format(Media.duration)
+        _this.duration2 = Media.duration
       });
       Media.addEventListener("timeupdate", function (event) {
         _this.currentTime = _this.format(Media.currentTime)
+        // console.log('时间改变', Media.currentTime)
+        // 进度条
+        let currentTime2 = Media.currentTime
+        let spanplayer_bgbar = document.querySelector('.js_qv_ctrl_bar')
+        let spanplayer_bgbarWidth = spanplayer_bgbar.offsetWidth
+        let percentage = spanplayer_bgbarWidth / _this.duration2
+        let currentPer = currentTime2 * percentage
+        _this.currentPer = (currentPer / spanplayer_bgbarWidth) * 100
 
       });
-      //监听播放时间
-
-      //使用事件监听方式捕捉事件
-
-      Media.addEventListener("timeupdate", function () {
-
-        var timeDisplay;
-
-        //用秒数来显示当前播放进度
-
-        timeDisplay = Math.floor(Media.currentTime);
-
-        console.log(Math.floor(Media.currentTime))
-
-        //当视频播放到 4s的时候做处理
-
-        if (timeDisplay == 4) {
-          //处理代码
-        }
-
-      }, false);
+      Media.addEventListener("ended", function () {
+        console.log('音频播放完成')
+        _this.isPlay = true
+        _this.currentTime = '00:00'
+        _this.currentPer = 0
+      });
     },
     methods: {
       format(value) { // 时间转换
@@ -574,13 +568,6 @@
         }
         this.isFullScreen = !this.isFullScreen
       },
-      // 视频加载完成
-      oncanplaythrough() {
-        console.log('视频加载完成11')
-        const Media = document.getElementById("video_player__source")
-        console.log('video.currentTime', Media.currentTime)
-        console.log('video.duration', Media.duration)
-      },
       FullScreen(element) {
         if (element.requestFullscreen) {
           element.requestFullscreen();
@@ -604,8 +591,17 @@
         } else if (document.webkitExitFullscreen) {
           document.webkitExitFullscreen();
         }
+      },
+      setProgress(event) {
+        const events = event || window.event;
+        let offsetX = events.offsetX
+        let spanplayer_bgbar = document.querySelector('.js_qv_ctrl_bar')
+        let spanplayer_bgbarWidth = spanplayer_bgbar.offsetWidth
+        let percentage = offsetX / spanplayer_bgbarWidth
+        let currentTime = this.duration2 * percentage
+        const Media = document.getElementById("video_player__source");
+        Media.currentTime = currentTime
       }
-
     }
   }
 

@@ -235,19 +235,20 @@
         <div class="player_music">
           <div class="player_music__info" id="sim_song_info"><a
               href="https://y.qq.com/n/yqq/song/0013WPvt4fQH2b.html#stat=y_new.player.info_area.songname"
-              onclick="setStatCookie&amp;&amp;setStatCookie();" title="天外来物" class="js_song"
+              onclick="setStatCookie&amp;&amp;setStatCookie();" :title="songData.extras.name" class="js_song"
               data-stat="y_new.player.info_area.songname" data-mid="0013WPvt4fQH2b" data-id="272125057"
-              data-songtype="0" data-disstid="" rel="noopener nofollow" target="_blank">天外来物</a> - <a
-              href="https://y.qq.com/n/yqq/singer/002J4UUk29y8BY.html#stat=y_new.player.info_area.singername"
-              onclick="setStatCookie&amp;&amp;setStatCookie();" title="薛之谦" class="js_singer"
-              data-stat="y_new.player.info_area.singername" data-singermid="002J4UUk29y8BY" rel="noopener nofollow"
-              target="_blank">薛之谦</a></div>
+              data-songtype="0" data-disstid="" rel="noopener nofollow" target="_blank">{{songData.extras.name}}</a> -
+            <a href="https://y.qq.com/n/yqq/singer/002J4UUk29y8BY.html#stat=y_new.player.info_area.singername"
+              onclick="setStatCookie&amp;&amp;setStatCookie();" :title="songData.track_info.singer[0].name"
+              class="js_singer" data-stat="y_new.player.info_area.singername" data-singermid="002J4UUk29y8BY"
+              rel="noopener nofollow" target="_blank">{{songData.track_info.singer[0].name}}</a></div>
           <div class="player_music__time" id="time_show">{{currentTime}} / {{duration}}</div>
           <div class="player_progress" id="progress">
-            <div class="player_progress__inner" id="spanplayer_bgbar" title="[快进ctrl+alt+→][快退ctrl+alt+←]">
-              <div class="player_progress__load" id="downloadbar" style="width: 10%;"></div>
-              <div class="player_progress__play" style="width:0%;" id="spanplaybar"><i class="player_progress__dot"
-                  id="spanprogress_op"></i></div>
+            <div class="player_progress__inner" id="spanplayer_bgbar" title="[快进ctrl+alt+→][快退ctrl+alt+←]"
+              @click="setProgress($event)">
+              <div class="player_progress__load" id="downloadbar" style="width: 100%;"></div>
+              <div class="player_progress__play" :style="{width: currentPer + '%'}" id="spanplaybar"><i
+                  class="player_progress__dot" id="spanprogress_op"></i></div>
             </div>
           </div>
         </div>
@@ -270,17 +271,15 @@
               class="icon_txt">关闭声音[M]</span></a>
           <!-- <a href="javascript:;" class="btn_big_voice btn_big_voice--no"><span class="icon_txt">打开声音</span></a> -->
           <div class="player_progress__inner" id="spanvolume" title="调节音量 [增大alt+↑][减小alt+↓]">
-            <div class="player_progress__play" style="width: 75%;" id="spanvolumebar"><i class="player_progress__dot"
-                id="spanvolumeop"></i></div>
+            <div class="player_progress__play" style="width: 75%;" id="spanvolumebar">
+              <i class="player_progress__dot" @mousemove.prevent='mousemove($event)' id="spanvolumeop"></i></div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="bg_player_mask"></div>
-    <div class="bg_player"
-      style="background-image: url(https://y.gtimg.cn/music/photo_new/T002R300x300M000000MKKJW0TJaQf.jpg?max_age=2592000);"
-      id="backImg"></div>
+    <div class="bg_player" :style="{backgroundImage: 'url('+ backgroundImage + ')'}" id="backImg"></div>
 
     <audio id="h5audio_media" height="0" width="0" controls="true" style="display: none;">
       <source :src="songUrl">
@@ -312,7 +311,9 @@
         currentLyc: 0,
         currentTime: '00:00',
         duration: '',
+        currentPer: 0,
         play_pause: false,
+        backgroundImage: '',
         popup_data_detail: false
       }
     },
@@ -369,10 +370,23 @@
       Media.addEventListener("timeupdate", function (event) {
         _this.timeUpdate(event)
       });
+      Media.addEventListener("progress", function () {
+        console.log('音频加载中')
+        // _this.duration = _this.format(Media.duration)
+      });
       Media.addEventListener("canplaythrough", function () {
         console.log('音频加载完成')
         _this.duration = _this.format(Media.duration)
+        _this.duration2 = Media.duration
       });
+      Media.addEventListener("ended", function () {
+        console.log('音频播放完成')
+        _this.play_pause = false
+        _this.currentTime = '00:00'
+        _this.currentPer = 0
+      });
+      this.backgroundImage =
+        `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.songData.track_info.album.mid}.jpg?max_age=2592000`
     },
     methods: {
       photo_new(mid) {
@@ -403,6 +417,14 @@
             }
           }
         }
+        // 进度条
+        let currentTime2 = document.getElementsByTagName('audio')[0]['currentTime']
+        let spanplayer_bgbar = document.querySelector('#spanplayer_bgbar')
+        let spanplayer_bgbarWidth = spanplayer_bgbar.offsetWidth
+        let percentage = spanplayer_bgbarWidth / this.duration2
+        let currentPer = currentTime2 * percentage
+        this.currentPer = (currentPer / spanplayer_bgbarWidth) * 100
+
       },
       playAndSuspend() {
         const Media = document.getElementById("h5audio_media");
@@ -412,6 +434,25 @@
           Media.pause()
         }
         this.play_pause = !this.play_pause
+      },
+      mousemove(event) {
+        var endx = event.x - this.sb_bkx;
+        var endy = event.y - this.sb_bky;
+        var _this = this
+        if (this.is_moving) {
+          event.target.style.left = endx + 'px';
+          event.target.style.top = endy + 'px';
+        }
+      },
+      setProgress(event) {
+        const events = event || window.event;
+        let offsetX = events.offsetX
+        let spanplayer_bgbar = document.querySelector('#spanplayer_bgbar')
+        let spanplayer_bgbarWidth = spanplayer_bgbar.offsetWidth
+        let percentage = offsetX / spanplayer_bgbarWidth
+        let currentTime = this.duration2 * percentage
+        const Media = document.getElementById("h5audio_media");
+        Media.currentTime = currentTime
       }
     }
   }
