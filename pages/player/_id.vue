@@ -267,12 +267,11 @@
             class="icon_txt">打开纯净模式[C]</span></a>
         <!-- <a href="javascript:;" class="btn_big_only btn_big_only--on"><span class="icon_txt">关闭纯净模式</span></a> -->
         <div class="player_progress player_voice" id="voice">
-          <a href="javascript:;" class="btn_big_voice" id="spanmute" title="关闭声音[M]"><span
-              class="icon_txt">关闭声音[M]</span></a>
-          <!-- <a href="javascript:;" class="btn_big_voice btn_big_voice--no"><span class="icon_txt">打开声音</span></a> -->
-          <div class="player_progress__inner" id="spanvolume" title="调节音量 [增大alt+↑][减小alt+↓]">
-            <div class="player_progress__play" style="width: 75%;" id="spanvolumebar">
-              <i class="player_progress__dot" @mousemove.prevent='mousemove($event)' id="spanvolumeop"></i></div>
+          <a href="javascript:;" class="btn_big_voice btn_big_voice--no" v-if="!volumeCurrentPer"><span class="icon_txt">打开声音</span></a>
+          <a href="javascript:;" class="btn_big_voice" id="spanmute" title="关闭声音[M]" v-else><span class="icon_txt">关闭声音[M]</span></a>
+          <div class="player_progress__inner" id="spanvolume" title="调节音量 [增大alt+↑][减小alt+↓]" @click.stop.prevent="volumeOnclick($event)">
+            <div class="player_progress__play" :style="{width: volumeCurrentPer + '%'}" id="spanvolumebar">
+              <i class="player_progress__dot" @mousedown.stop.prevent='onmousedown($event)' id="spanvolumeop"></i></div>
           </div>
         </div>
       </div>
@@ -314,6 +313,7 @@
         currentPer: 0,
         play_pause: false,
         backgroundImage: '',
+        volumeCurrentPer: 0,
         popup_data_detail: false
       }
     },
@@ -378,6 +378,7 @@
         console.log('音频加载完成')
         _this.duration = _this.format(Media.duration)
         _this.duration2 = Media.duration
+        Media.volume = 0
       });
       Media.addEventListener("ended", function () {
         console.log('音频播放完成')
@@ -435,14 +436,87 @@
         }
         this.play_pause = !this.play_pause
       },
-      mousemove(event) {
-        var endx = event.x - this.sb_bkx;
-        var endy = event.y - this.sb_bky;
-        var _this = this
-        if (this.is_moving) {
-          event.target.style.left = endx + 'px';
-          event.target.style.top = endy + 'px';
+      // 音量调节
+      onmousedown(ev) {
+        const Media = document.getElementById("h5audio_media");
+        var box = document.querySelector('#spanvolumeop')
+        var bar = document.querySelector('#spanvolumebar')
+        var all = document.querySelector('#spanvolume')
+        // var p = document.getElementsByTagName('p')[0]
+        var cha = all.offsetWidth - box.offsetWidth
+        let boxL = box.offsetLeft
+        let e = ev || window.event //兼容性
+        let mouseX = e.clientX //鼠标按下的位置
+        const _this = this
+        window.onmousemove = function (ev) {
+          let e = ev || window.event
+          let moveL = e.clientX - mouseX //鼠标移动的距离
+          let newL = boxL + moveL //left值
+          // 判断最大值和最小值
+          if (newL < 0) {
+            newL = 0
+          }
+          if (newL >= cha) {
+            newL = cha
+          }
+          // 改变left值
+          box.style.left = newL + 'px'
+          // 计算比例
+          let bili = newL / cha * 100
+          // p.innerHTML = '当前位置' + Math.ceil(bili) + '%'
+          _this.volumeCurrentPer = Math.ceil(bili)
+          Media.volume = newL / cha
+          e.stopPropagation()
+          e.preventDefault()
+          e.cancelBubble = true
+          return false //取消默认事件
         }
+        window.onmouseup = function (ev) {
+          let e = ev || window.event //兼容性
+          window.onmousemove = false //解绑移动事件
+          e.stopPropagation()
+          e.preventDefault()
+          e.cancelBubble = true
+          return false
+        }
+        e.stopPropagation()
+        e.preventDefault()
+        e.cancelBubble = true
+        return false
+      },
+      volumeOnclick2 (ev) {
+        const Media = document.getElementById("h5audio_media");
+        var box = document.querySelector('#spanvolumeop')
+        var bar = document.querySelector('#spanvolumebar')
+        var all = document.querySelector('#spanvolume')
+        var voice = document.querySelector('#voice')
+        var cha = all.offsetWidth - box.offsetWidth
+        let left = ev.clientX - voice.offsetLeft - box.offsetWidth / 2
+        if (left < 0) {
+          left = 0
+        }
+        if (left >= cha) {
+          left = cha
+        }
+        box.style.left = left + 'px'
+        let bili = left / cha * 100
+        // p.innerHTML = '当前位置' + Math.ceil(bili) + '%'
+        Media.volume = left / cha
+        console.log(left)
+        return false
+      },
+      volumeOnclick (event) {
+        // const Media = document.getElementById("h5audio_media");
+        // const events = event || window.event
+        // let offsetX = events.offsetX
+        // let spanplayer_bgbar = document.querySelector('#spanvolume')
+        // let spanplayer_bgbarWidth = spanplayer_bgbar.offsetWidth
+        // var box = document.querySelector('#spanvolumeop')
+        // var cha = spanplayer_bgbarWidth
+        // let bili = offsetX / cha * 100
+        // box.style.left = offsetX + 'px'
+        // this.volumeCurrentPer = Math.ceil(bili)
+        // Media.volume = offsetX / cha
       },
       setProgress(event) {
         const events = event || window.event;
