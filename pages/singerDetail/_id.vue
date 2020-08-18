@@ -170,8 +170,8 @@
                   </div>
                   <div class="songlist__album">
 
-                    <a href="//y.qq.com/n/yqq/album/000MkMni19ClKG.html"
-                       :title="item.album.title">{{item.album.name}}</a>
+                    <nuxt-link :to="'/Album/' + item.album.mid"
+                       :title="item.album.title">{{item.album.name}}</nuxt-link>
 
                   </div>
                   <div class="songlist__time">{{item.listen_count | playVolume}}</div>
@@ -213,7 +213,7 @@
                   :data-albummid="item.album_mid"
                   :data-albumid="item.albumid">
                 <div class="playlist__item_box">
-                  <div class="playlist__cover mod_cover"><a href="https://y.qq.com/n/yqq/album/0009C3rp3Kfwg0.html"
+                  <div class="playlist__cover mod_cover"><nuxt-link :to="'/Album/' + item.album_mid"
                        class="js_album"
                        data-stat="y_new.singer.index.album_pic"
                        :data-albummid="item.album_mid"
@@ -221,7 +221,7 @@
                            :alt="item.album_name"
                            onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;"
                            class="playlist__pic"><i class="mod_cover__icon_play js_play"
-                         data-stat="y_new.singer.index.album_play"></i></a></div>
+                         data-stat="y_new.singer.index.album_play"></i></nuxt-link></div>
                   <h4 class="playlist__title"><span class="playlist__title_txt"><nuxt-link :to="'/Album/' + item.album_mid"
                          :title="item.album_name"
                          class="js_album"
@@ -261,7 +261,7 @@
                   :data-vid="item.vid"
                   :data-id="item.id">
                 <div class="mv_list__item_box">
-                  <a href="https://y.qq.com/n/yqq/mv/v/t0032kwa29w.html#stat=y_new.singer.index.mv_play"
+                  <nuxt-link :to="'/MVDetail/' + item.vid"
                      onclick="setStatCookie&amp;&amp;setStatCookie();"
                      class="mv_list__cover mod_cover js_mv"
                      data-stat="y_new.singer.index.mv_play"
@@ -273,14 +273,14 @@
                          onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
                          :alt="item.title">
                     <i class="mod_cover__icon_play"></i>
-                  </a>
-                  <h3 class="mv_list__title"><a href="https://y.qq.com/n/yqq/mv/v/t0032kwa29w.html#stat=y_new.singer.index.mv_name"
+                  </nuxt-link>
+                  <h3 class="mv_list__title"><nuxt-link :to="'/MVDetail/' + item.vid"
                        onclick="setStatCookie&amp;&amp;setStatCookie();"
                        class="js_mv"
                        data-stat="y_new.singer.index.mv_name"
                        :data-vid="item.vid"
                        :data-id="item.id"
-                       :title="item.title">{{item.title}}</a></h3>
+                       :title="item.title">{{item.title}}</nuxt-link></h3>
 
                   <div class="mv_list__info"><span class="mv_list__listen"><i class="mv_list__listen_icon sprite"></i>{{item.listenCount | playVolume}}</span></div>
                 </div>
@@ -482,14 +482,19 @@ export default {
       singerDesc = res.data.data
       let str = []
       let str2 = []
-      singerDesc.basic.item.forEach(ele => {
-        str.push({'ele': ele.key + ':' + ele.value})
-      })
-      str.forEach(ele => {
-        str2.push(ele.ele)
-      })
-      let basic = str2.join()
-      basicAndDesc = basic + singerDesc.desc
+      if (singerDesc && typeof singerDesc.basic === 'object') {
+        singerDesc.basic.item.forEach(ele => {
+          str.push({'ele': ele.key + ':' + ele.value})
+        })
+        str.forEach(ele => {
+          str2.push(ele.ele)
+        })
+        let basic = str2.join()
+        basicAndDesc = basic + singerDesc.desc
+      } else {
+        basicAndDesc = singerDesc ? singerDesc.desc : ''
+      }
+      
     }
     // 歌手热门歌曲
     let singerSongs = {}
@@ -514,7 +519,9 @@ export default {
     let resSim = await app.$api.singerSim(params.id)
     if (resSim.data.result === 100) {
       singerSim = resSim.data.data
-      singerSim.list = singerSim.list.slice(0, 5)
+      if (singerSim.list && singerSim.list.length > 5) {
+        singerSim.list = singerSim.list.slice(0, 5)
+      }
     }
     return {
       singerDesc,

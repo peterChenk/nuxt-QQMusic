@@ -65,19 +65,17 @@
               onmouseover="this.className=(this.className+' playlist__item--hover')"
               onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')">
               <div class="playlist__item_box">
-                <div class="playlist__cover mod_cover" style="visibility: visible;"><a
-                    href="https://y.qq.com/n/yqq/playsquare/3552291790.html#stat=y_new.playlist.pic_click"
+                <div class="playlist__cover mod_cover" style="visibility: visible;"><nuxt-link :to="'/playlistDetail/' + item.dissid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_playlist" :title="item.dissname"
                     :data-disstid="item.dissid" data-stat="y_new.playlist.pic_click"><img :src="item.imgurl"
                       data-original="//p.qpic.cn/music_cover/YEqzCcJKAOwd4o0ib8yGnjpcIhaUr2G4LcJmflibDkx5YJTZfYcOQraA/300?n=1"
                       onerror="this.src='//y.gtimg.cn/mediastyle/global/img/cover_playlist.png?max_age=31536000';this.onerror=null;"
                       :alt="item.dissname" class="playlist__pic" style="display: block; visibility: visible;"><i
-                      class="mod_cover__icon_play js_play" data-stat="y_new.playlist.pic_play"></i></a></div>
-                <h4 class="playlist__title"><span class="playlist__title_txt"><a
-                      href="https://y.qq.com/n/yqq/playsquare/3552291790.html#stat=y_new.playlist.dissname"
+                      class="mod_cover__icon_play js_play" data-stat="y_new.playlist.pic_play"></i></nuxt-link></div>
+                <h4 class="playlist__title"><span class="playlist__title_txt"><nuxt-link :to="'/playlistDetail/' + item.dissid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_playlist"
                       data-stat="y_new.playlist.dissname" :data-disstid="item.dissid"
-                      :title="item.dissname">{{item.dissname}}</a></span></h4>
+                      :title="item.dissname">{{item.dissname}}</nuxt-link></span></h4>
                 <div class="playlist__author">
 
                   <a href="//y.qq.com/portal/profile.html?uin=owSqoKvFNK-5Nv**#stat=y_new.playlist.creater"
@@ -128,7 +126,7 @@
       }
 
       let songList = []
-      let result = await app.$api.songList()
+      let result = await app.$api.songPlayList()
       if (result.data.result === 100) {
         songList = result.data.data.list
       }
@@ -145,7 +143,7 @@
         let params = {
           category: item.id
         }
-        let res = await this.$api.songList(params)
+        let res = await this.$api.songPlayList(params)
         if (res.data.result === 100) {
           this.songList = res.data.data.list
         }

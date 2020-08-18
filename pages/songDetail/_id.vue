@@ -46,11 +46,11 @@
 
             <li class="data_info__item js_lan"
                 style="">语种：{{songData.info.lan.content[0].value}}</li>
-            <li class="data_info__item js_genre data_info__item--even"
+            <li class="data_info__item js_genre data_info__item--even" v-if="songData.info.genre"
                 style="">流派：{{songData.info.genre.content[0].value}}</li>
 
-            <li class="data_info__item data_info__item--even js_company"
-                style="display: none;">唱片公司：</li>
+            <li class="data_info__item data_info__item--even js_company" v-if="songData.info.company"
+                >唱片公司：{{songData.info.company.content[0].value}}</li>
 
             <li class="data_info__item js_public_time"
                 v-if="songData.info.pub_time"
@@ -59,8 +59,8 @@
           </ul>
           <div class="data__actions"
                role="toolbar">
-            <a href="//y.qq.com/portal/player.html"
-               class="mod_btn_green js_all_play"><i class="mod_btn_green__icon_play"></i>播放</a>
+            <nuxt-link :to="'/player/' + songData.track_info.mid"
+               class="mod_btn_green js_all_play"><i class="mod_btn_green__icon_play"></i>播放</nuxt-link>
 
             <a href="javascript:;"
                class="mod_btn js_all_like"><i class="mod_btn__icon_like"></i>收藏</a>
@@ -169,7 +169,7 @@
               <div class="mv_list__item_box"
                    data-vid=""
                    :data-id="songMV.mvid">
-                <a href="https://y.qq.com/n/yqq/mv/v/d0025jq894n.html"
+                <nuxt-link :to="'/MVDetail/' + songMV.vid"
                    class="mv_list__cover mod_cover js_mv"
                    data-vid="songMV.vid"
                    data-id="songMV.mvid"
@@ -179,12 +179,12 @@
                        onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
                        alt="songMV.title">
                   <i class="mod_cover__icon_play"></i>
-                </a>
-                <h3 class="mv_list__title"><a href="https://y.qq.com/n/yqq/mv/v/d0025jq894n.html"
+                </nuxt-link>
+                <h3 class="mv_list__title"><nuxt-link :to="'/MVDetail/' + songMV.vid"
                      class="js_mv"
                      data-vid="songMV.vid"
                      data-id="songMV.mvid"
-                     :title="songMV.title">{{songMV.title}}</a></h3>
+                     :title="songMV.title">{{songMV.title}}</nuxt-link></h3>
 
                 <p class="mv_list__singer"
                     v-if="songMV.singers.length > 0"

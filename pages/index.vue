@@ -47,22 +47,22 @@
       }
       // 精彩推荐
       let wonderfulRecommend = []
-      // const wfResult = await app.$api.wonderfulRecommend()
-      // if (wfResult.data.result === 100) {
-      //   wonderfulRecommend = wfResult.data.data
-      // }
+      const wfResult = await app.$api.wonderfulRecommend()
+      if (wfResult.data.result === 100) {
+        wonderfulRecommend = wfResult.data.data
+      }
       // 新碟首发
       let newDisc = []
-      // const ndResult = await app.$api.newDisc()
-      // if (ndResult.data.result === 100) {
-      //   newDisc = ndResult.data.data.list
-      // }
+      const ndResult = await app.$api.newDisc()
+      if (ndResult.data.result === 100) {
+        newDisc = ndResult.data.data.list
+      }
       // 排行榜
       let rankingList = []
-      // const rlResult = await app.$api.rankingList()
-      // if (rlResult.data.result === 100) {
-      //   rankingList = rlResult.data.data[0].list
-      // }
+      const rlResult = await app.$api.rankingList()
+      if (rlResult.data.result === 100) {
+        rankingList = rlResult.data.data[0].list
+      }
       // MV
       let MVList = []
       const mvResult = await app.$api.newMV()

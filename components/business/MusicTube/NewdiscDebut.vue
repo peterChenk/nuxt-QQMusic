@@ -17,34 +17,33 @@
             <li class="swiper-slide playlist__item slide__item  playlist__item--hover"
               onmouseover="this.className=(this.className+' playlist__item--hover')"
               onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')"
-              data-albummid="004M91mx3KeKTZ" data-albumid="13952172" v-for="(item, index) in newDiscList" :key="index">
+              data-albummid="004M91mx3KeKTZ" :data-albumid="item.mid" v-for="(item, index) in newDiscList" :key="index">
               <div class="playlist__item_box">
                 <div class="playlist__cover mod_cover" style="visibility: visible;">
-                  <a href="https://y.qq.com/n/yqq/album/004M91mx3KeKTZ.html#stat=y_new.index.album.albumpic"
+                  <nuxt-link :to="'/Album/' + item.mid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_album"
-                    data-stat="y_new.index.album.albumpic" data-albummid="004M91mx3KeKTZ" data-albumid="13952172"><img
+                    data-stat="y_new.index.album.albumpic" :data-albummid="item.mid" :data-albumid="item.mid"><img
                       :src="imgSrc(item)" data-original="" alt="item.title"
                       onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;"
                       class="playlist__pic" style="display: block; visibility: visible;"><i
                       class="mod_cover__mask"></i><i class="mod_cover__icon_play js_play"
-                      data-stat="y_new.index.album.play_btn"></i></a>
+                      data-stat="y_new.index.album.play_btn"></i></nuxt-link>
                 </div>
                 <h4 class="playlist__title">
-                  <span class="playlist__title_txt"><a
-                      href="https://y.qq.com/n/yqq/album/004M91mx3KeKTZ.html#stat=y_new.index.album.albumname"
+                  <span class="playlist__title_txt"><nuxt-link :to="'/Album/' + item.mid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_album"
-                      data-stat="y_new.index.album.albumname" data-albummid="004M91mx3KeKTZ"
-                      data-albumid="13952172">{{item.name}}</a></span>
+                      data-stat="y_new.index.album.albumname" :data-albummid="item.mid"
+                      :data-albumid="item.mid">{{item.name}}</nuxt-link></span>
                   <a href="javascript:;" class="btn_operate_menu js_albumlist_more" data-stat="y_new.index.album.more"
-                    data-type="2" data-mid="004M91mx3KeKTZ"><span class="icon_txt">����</span></a>
+                    data-type="2" :data-mid="item.mid"><span class="icon_txt">����</span></a>
                 </h4>
 
                 <div class="playlist__author" title="">
 
-                  <a href="https://y.qq.com/n/yqq/singer/001YMQJO2Av6y5.html#stat=y_new.index.album.singername"
+                  <nuxt-link :to="'/singerDetail/' + item.singers[0].mid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_singer"
-                    data-stat="y_new.index.album.singername" data-singermid="001YMQJO2Av6y5"
-                    title="赖美云">{{item.singers[0].name}}</a>
+                    data-stat="y_new.index.album.singername" :data-singermid="item.singers[0].mid"
+                    :title="item.singers[0].name">{{item.singers[0].name}}</nuxt-link>
 
                 </div>
               </div>

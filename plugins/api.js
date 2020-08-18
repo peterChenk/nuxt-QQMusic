@@ -144,7 +144,7 @@ export default ({
      * @param {number} sort // 5: 推荐，2: 最新，其他数字的排列值最后都会返回推荐
      * @param {number} category 分类 id，默认 10000000 （全部），其他值从上面的分类接口获取
      */
-    songList(params) {
+    songPlayList(params) {
       return $request.get('/songlist/list', params)
     },
     /**

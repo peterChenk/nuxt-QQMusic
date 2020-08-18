@@ -79,22 +79,22 @@
                     v-if="item.mv.vid" rel="noopener" target="_blank" title="MV"><span class="icon_txt">MV</span></a>
 
                   <span class="songlist__songname_txt" style="visibility: visible;">
-                    <a href="https://y.qq.com/n/yqq/album/004C9Kg7275J7H.html" class="songlist__cover album_name"
+                    <nuxt-link :to="'/Album/' + item.albumMid" class="songlist__cover album_name"
                       :data-albummid="item.albumMid" data-albumid="13226468"><img
                         onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;"
                         :src="imgSrc(item)"
                         data-original="//y.gtimg.cn/music/photo_new/T002R90x90M000004C9Kg7275J7H.jpg?max_age=2592000"
-                        :alt="item.title" class="songlist__pic" style="display: block; visibility: visible;"></a>
-                    <a href="https://y.qq.com/n/yqq/song/004Fimy419PpsA.html" class="js_song"
+                        :alt="item.title" class="songlist__pic" style="display: block; visibility: visible;"></nuxt-link>
+                    <nuxt-link :to="'/songDetail/' + item.mid" class="js_song"
                       :title="item.title ">{{item.title}}
-                      <span class="songlist__song_txt" v-if="item.subtitle">{{item.subtitle}}</span></a>
+                      <span class="songlist__song_txt" v-if="item.subtitle">{{item.subtitle}}</span></nuxt-link>
 
                   </span>
                   <div class="mod_list_menu">
-                    <a href="javascript:;" class="list_menu__item list_menu__play js_play" title="播放">
+                    <nuxt-link :to="'/player/' + item.mid" class="list_menu__item list_menu__play js_play" title="播放">
                       <i class="list_menu__icon_play"></i>
                       <span class="icon_txt">播放</span>
-                    </a>
+                    </nuxt-link>
                     <a href="javascript:;" class="list_menu__item list_menu__add js_fav" title="添加到歌单"
                       aria-haspopup="true" data-target="menu_add">
                       <i class="list_menu__icon_add"></i>
@@ -117,8 +117,8 @@
 
                 <div class="songlist__artist" :title="item.singerName">
 
-                  <a href="https://y.qq.com/n/yqq/singer/00067r4p0wBDDN.html" data-singermid="00067r4p0wBDDN"
-                    data-singerid="29858" title="任然" class="singer_name">{{item.singerName}}</a>
+                  <nuxt-link :to="'/singerDetail/' + item.singerMid" data-singermid="singerMid"
+                    data-singerid="songId" :title="item.singerName" class="singer_name">{{item.singerName}}</nuxt-link>
 
                 </div>
                 <div class="songlist__time">04:56</div>

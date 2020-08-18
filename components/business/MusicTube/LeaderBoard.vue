@@ -23,14 +23,14 @@
                 <li class="toplist__song" v-for="(item2, index2) in item.song">
                   <div class="toplist__number">{{index2 + 1}}</div>
                   <div class="toplist__songname">
-                    <a href="https://y.qq.com/n/yqq/song/270029523_num.html#stat=y_new.index.toplist.songname"
+                    <nuxt-link :to="'/Album/' + item2.albumMid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_song" :data-id="item2.songId"
-                      data-stat="y_new.index.toplist.songname">{{item2.title}}</a>
+                      data-stat="y_new.index.toplist.songname">{{item2.title}}</nuxt-link>
                   </div>
                   <div class="toplist__artist">
-                    <a href="https://y.qq.com/n/yqq/singer/001aAX6V1QArFZ.html#stat=y_new.index.toplist.singername"
+                    <nuxt-link :to="'/singerDetail/' + item2.singerMid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" data-stat="y_new.index.toplist.singername">
-                      {{item2.singerName}}</a>
+                      {{item2.singerName}}</nuxt-link>
                   </div>
                 </li>
               </ul>

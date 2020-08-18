@@ -126,12 +126,12 @@
                        v-if="item.isonly === 1"
                        title="独家"></i>
 
-                    <a href="https://y.qq.com/n/yqq/mv/v/q0012cgv5bh.html"
+                    <nuxt-link :to="'/MVDetail/' + item.vid"
                        class="songlist__icon songlist__icon_mv sprite"
                        rel="noopener"
                        target="_blank"
                        v-if="item.vid"
-                       title="MV"><span class="icon_txt">MV</span></a>
+                       title="MV"><span class="icon_txt">MV</span></nuxt-link>
 
                     <i class="songlist__icon songlist__icon_vip sprite"
                        v-if="item.pay.payplay === 1"
@@ -142,12 +142,12 @@
                          class="js_song"
                          :title="item.songname">{{item.songname}}<span class="songlist__song_txt"></span></nuxt-link></span>
                     <div class="mod_list_menu">
-                      <a href="javascript:;"
+                      <nuxt-link :to="'/player/' + item.songmid"
                          class="list_menu__item list_menu__play js_play"
                          title="播放">
                         <i class="list_menu__icon_play"></i>
                         <span class="icon_txt">播放</span>
-                      </a>
+                      </nuxt-link>
                       <a href="javascript:;"
                          class="list_menu__item list_menu__add js_fav"
                          title="添加到歌单"
@@ -178,21 +178,21 @@
                   <div class="songlist__artist"
                        :title="item.singer[0].name">
 
-                    <a href="https://y.qq.com/n/yqq/singer/002yjHfE3aJX69.html"
+                    <nuxt-link :to="'/singerDetail/' + item.singer[0].mid"
                        :data-singermid="item.singer[0].mid"
                        :data-singerid="item.singer[0].id"
                        :title="item.singer[0].name"
-                       class="singer_name">{{item.singer[0].name}}</a>
+                       class="singer_name">{{item.singer[0].name}}</nuxt-link>
 
                   </div>
                   <div class="songlist__album">
-                    <a href="https://y.qq.com/n/yqq/album/003f7Aiu0LvruI.html"
+                    <nuxt-link :to="'/Album/' + item.albummid"
                        :title="item.albumname"
                        class="album_name"
                        :data-albummid="item.albummid"
-                       :data-albumid="item.albumid">{{item.albumname}}</a>
+                       :data-albumid="item.albumid">{{item.albumname}}</nuxt-link>
                   </div>
-                  <div class="songlist__time">04:22</div>
+                  <div class="songlist__time">{{(item.interval / 60).toFixed(2)}}</div>
                   <div class="songlist__other">
 
                   </div>

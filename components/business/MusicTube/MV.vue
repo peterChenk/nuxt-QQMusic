@@ -17,7 +17,7 @@
             <li class="swiper-slide" v-for="(item, index) in MVListData" :key="index" data-vid="g0034ykznrl"
               data-id="1636889">
               <div class="mv_list__item_box" style="visibility: visible;">
-                <a href="https://y.qq.com/n/yqq/mv/v/g0034ykznrl.html#stat=y_new.index.mv.play_btn"
+                <nuxt-link :to="'/MVDetail/' + item.vid"
                   onclick="setStatCookie&amp;&amp;setStatCookie();" class="mv_list__cover mod_cover js_mv"
                   data-stat="y_new.index.mv.play_btn" data-vid="g0034ykznrl" data-id="1636889" hidefocus="true">
                   <img class="mv_list__pic" :src="item.picurl"
@@ -25,20 +25,20 @@
                     onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
                     :alt="item.mvtitle" style="display: block; visibility: visible;">
                   <i class="mod_cover__icon_play"></i>
-                </a>
-                <h3 class="mv_list__title"><a
-                    href="https://y.qq.com/n/yqq/mv/v/g0034ykznrl.html#stat=y_new.index.mv.mvname"
+                </nuxt-link>
+                <h3 class="mv_list__title"><nuxt-link
+                    :to="'/MVDetail/' + item.vid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_mv" data-stat="y_new.index.mv.mvname"
-                    data-vid="g0034ykznrl" data-id="1636889" title="五月天《倔强》Live MV (Live)">{{item.mvtitle}}</a></h3>
+                    data-vid="g0034ykznrl" data-id="1636889" title="五月天《倔强》Live MV (Live)">{{item.mvtitle}}</nuxt-link></h3>
                 <p class="mv_list__singer">
-                  <a href="https://y.qq.com/n/yqq/singer/000Sp0Bz4JXH0o.html#stat=y_new.index.mv.singername"
+                  <nuxt-link :to="'/singerDetail/' + item.singermid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_singer"
                     :data-singermid="item.singer_mid" data-stat="y_new.index.mv.singername"
-                    :data-singerid="item.singer_id" :title="item.singer_name">{{item.singer_name}}</a>
+                    :data-singerid="item.singer_id" :title="item.singer_name">{{item.singer_name}}</nuxt-link>
                   <!--div class="mv_list__info">2020-07-27</div-->
                 </p>
                 <div class="mv_list__info"><span class="mv_list__listen"><i
-                      class="mv_list__listen_icon sprite"></i>{{item.listennum}}万</span></div>
+                      class="mv_list__listen_icon sprite"></i>{{item.listennum | playVolume}}万</span></div>
                 <p></p>
               </div>
             </li>

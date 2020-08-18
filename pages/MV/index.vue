@@ -37,7 +37,7 @@
           <ul class="mv_list__list" id="mv_list">
             <li class="mv_list__item" v-for="(item, index) in MVList" :data-vid="item.vid" :key="index">
               <div class="mv_list__item_box" style="visibility: visible;">
-                <a href="https://y.qq.com/n/yqq/mv/v/r0033wmeu4q.html#stat=y_new.mv_lib.mv_play"
+                <nuxt-link :to="'/MVDetail/' + item.vid"
                   onclick="setStatCookie&amp;&amp;setStatCookie();" class="mv_list__cover mod_cover js_mv"
                   data-stat="y_new.mv_lib.mv_play" :data-vid="item.vid" :title="item.title" hidefocus="true">
                   <img class="mv_list__pic" :src="item.picurl"
@@ -45,17 +45,16 @@
                     onerror="this.src='//y.gtimg.cn/mediastyle/global/img/mv_300.png?max_age=31536000';this.onerror=null;"
                     :alt="item.title" style="display: block; visibility: visible;">
                   <i class="mod_cover__icon_play"></i>
-                </a>
-                <h3 class="mv_list__title"><a
-                    href="https://y.qq.com/n/yqq/mv/v/r0033wmeu4q.html#stat=y_new.mv_lib.mv_name"
+                </nuxt-link>
+                <h3 class="mv_list__title"><nuxt-link :to="'/MVDetail/' + item.vid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_mv" data-stat="y_new.mv_lib.mv_name"
-                    :data-vid="item.vid" :title="item.title">{{item.title}}</a></h3>
+                    :data-vid="item.vid" :title="item.title">{{item.title}}</nuxt-link></h3>
 
                 <div class="mv_list__singer" :title="item.singers.name">
-                  <a href="https://y.qq.com/n/yqq/singer/003TRNbd3cJYeN.html#stat=y_new.mv_lib.mv_singername"
+                  <nuxt-link :to="'/singerDetail/' + item.singers[0].mid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_singer"
-                    data-stat="y_new.mv_lib.mv_singername" :data-singermid="item.singers.mid" :title="item.singers.name">
-                    {{item.singers[0].name}}</a>
+                    data-stat="y_new.mv_lib.mv_singername" :data-singermid="item.singers[0].mid" :title="item.singers.name">
+                    {{item.singers[0].name}}</nuxt-link>
                 </div>
 
                 <div class="mv_list__info"><span class="mv_list__listen"><i

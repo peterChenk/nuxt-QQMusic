@@ -144,16 +144,16 @@
           {
             link: "/mv",
             text: "MV"
-          },
-          {
-            link: "https://y.qq.com/portal/album_mall.html",
-            text: "数字专辑"
-          },
-          {
-            // link: "https://y.qq.com/portal/piao_wu.html",
-            link: '/playlistDetail',
-            text: "票务"
           }
+          // {
+          //   link: "https://y.qq.com/portal/album_mall.html",
+          //   text: "数字专辑"
+          // },
+          // {
+          //   // link: "https://y.qq.com/portal/piao_wu.html",
+          //   link: '/playlistDetail',
+          //   text: "票务"
+          // }
         ],
         slective: 0,
         drop: false,

@@ -20,7 +20,7 @@
                 <input type="checkbox" class="songlist__checkbox">
               </div>
               <div class="songlist__item_box" style="visibility: visible;">
-                <a href="javascript:;" title="等等" data-albummid="004M91mx3KeKTZ"
+                <nuxt-link :to="'/player/' + item.mid"
                   data-albumid="13952172" class="album_name songlist__link mod_cover">
                   <img class="songlist__pic" :src="imgSrc(item)"
                     data-original="//y.gtimg.cn/music/photo_new/T002R90x90M000004M91mx3KeKTZ_1.jpg?max_age=2592000"
@@ -28,19 +28,19 @@
                     style="display: block; visibility: visible;">
                   <i class="mod_cover__mask"></i>
                   <i class="mod_cover__icon_play js_play" data-stat="y_new.index.new_song.play_btn"></i>
-                </a>
+                </nuxt-link>
                 <div class="songlist__cont">
                   <h3 class="songlist__song"><nuxt-link
                       :to="{path: '/songDetail/' + item.mid, query: { songId: item.id }}"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" data-stat="y_new.index.new_song.songname"
                       class="js_song" :title="item.title"><span class="songlist__song_txt">{{item.name}}</span></nuxt-link></h3>
 
-                  <p class="songlist__author" :title="item.singer.name">
+                  <p class="songlist__author" :title="item.singer[0].name">
 
-                    <a href="https://y.qq.com/n/yqq/singer/001YMQJO2Av6y5.html#stat=y_new.index.new_song.singername"
+                    <nuxt-link :to="'/singerDetail/' + item.singer[0].mid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" data-stat="y_new.index.new_song.singername"
-                      data-singermid="001YMQJO2Av6y5" data-singerid="2141459" :title="item.singer[0].name"
-                      class="c_tx_thin singer_name">{{item.singer[0].name}}</a>
+                      :data-singermid="item.singer[0].mid" data-singerid="2141459" :title="item.singer[0].name"
+                      class="c_tx_thin singer_name">{{item.singer[0].name}}</nuxt-link>
 
                   </p>
                 </div>

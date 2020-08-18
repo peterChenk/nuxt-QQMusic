@@ -23,7 +23,7 @@
               onmouseout="this.className=this.className.replace(/ playlist__item--hover/, '')">
               <div class="playlist__item_box">
                 <div class="playlist__cover mod_cover" style="visibility: visible;">
-                  <a href="https://y.qq.com/n/yqq/album/002JsOLO0kixXt.html#stat=y_new.album_lib.album_pic"
+                  <nuxt-link :to="'/Album/' + item.mid"
                     onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_album"
                     data-stat="y_new.album_lib.album_pic" :data-albummid="item.mid">
                     <img :src="imgSrc(item)"
@@ -31,20 +31,20 @@
                       onerror="this.src='//y.gtimg.cn/mediastyle/global/img/album_300.png?max_age=31536000';this.onerror=null;"
                       :alt="item.name" class="playlist__pic" style="display: block; visibility: visible;">
                     <i class="mod_cover__icon_play js_play" data-stat="y_new.album_lib.album_play"></i>
-                  </a>
+                  </nuxt-link>
                 </div>
                 <h4 class="playlist__title">
                   <span class="playlist__title_txt">
-                    <a href="https://y.qq.com/n/yqq/album/002JsOLO0kixXt.html#stat=y_new.album_lib.album_name"
+                    <nuxt-link :to="'/Album/' + item.mid"
                       onclick="setStatCookie&amp;&amp;setStatCookie();" class="js_album"
                       data-stat="y_new.album_lib.album_name" :data-albummid="item.mid" :title="item.name">{{item.name}}
-                    </a>
+                    </nuxt-link>
                   </span>
                 </h4>
 
                 <div class="playlist__author" :title="item.singers.name">
-                  <a href="https://y.qq.com/n/yqq/singer/002XGxqI4HDz31.html" class="js_singer"
-                    :data-singermid="item.singers.mid">{{item.singers[0].name}}</a>
+                  <nuxt-link :to="'/singerDetail/' + item.singers[0].mid" class="js_singer"
+                    :data-singermid="item.singers.mid">{{item.singers[0].name}}</nuxt-link>
                 </div>
                 <div class="playlist__other">
                   {{item.release_time}}
