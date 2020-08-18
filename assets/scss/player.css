@@ -3456,6 +3456,9 @@ body:last-child .songlist_tips .popup_data_detail__arrow {
   opacity: 1;
   filter: none
 }
+.progress__dot{
+  left: 0;
+}
 
 .player_voice {
   position: absolute;

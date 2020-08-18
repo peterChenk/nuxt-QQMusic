@@ -252,9 +252,9 @@
                 <!-- 点击 音量 显示音量浮层 -->
                 <div class="video_popup_tips video_popup_voice js_qv_volume_change qv_hide" v-if="volume_change">
                   <div class="video_popup_tips__cont">
-                    <div class="video_popup_voice__box js_qv_volume_change_line">
-                      <div class="video_popup_voice__state js_volume_state" style="height:20%;">
-                        <a href="javascript:;" class="video_popup_voice__btn js_volume_btn">
+                    <div class="video_popup_voice__box js_qv_volume_change_line" id="spanvolume">
+                      <div class="video_popup_voice__state js_volume_state" :style="{height: volumeCurrentPer + '%'}" id="spanvolumebar">
+                        <a href="javascript:;" class="video_popup_voice__btn js_volume_btn" @mousedown.stop.prevent='onmousedown($event)' id="spanvolumeop">
                         </a>
                       </div>
                     </div>
@@ -475,7 +475,8 @@
         isFullScreen: false,
         currentTime: '00:00',
         duration: '',
-        currentPer: 0
+        currentPer: 0,
+        volumeCurrentPer: 50
       }
     },
     async asyncData({
@@ -601,7 +602,47 @@
         let currentTime = this.duration2 * percentage
         const Media = document.getElementById("video_player__source");
         Media.currentTime = currentTime
-      }
+      },
+      // 音量调节
+      onmousedown(ev) {
+        const Media = document.getElementById("video_player__source");
+        var box = document.querySelector('#spanvolumeop')
+        var bar = document.querySelector('#spanvolumebar')
+        var all = document.querySelector('#spanvolume')
+        // var p = document.getElementsByTagName('p')[0]
+        var cha = all.offsetHeight - box.offsetHeight
+        let boxL = bar.offsetHeight
+        let e = ev || window.event //兼容性
+        let mouseY = e.clientY //鼠标按下的位置
+        const _this = this
+        window.onmousemove = function (ev) {
+          let e = ev || window.event
+          let moveL = mouseY - e.clientY //鼠标移动的距离
+          let newL = boxL + moveL //height值
+          // 判断最大值和最小值
+          if (newL < 0) {
+            newL = 0
+          }
+          if (newL >= cha) {
+            newL = cha
+          }
+          // bottom
+          // box.style.top = newL + 'px'
+          // 计算比例
+          let bili = newL / cha * 100
+          // p.innerHTML = '当前位置' + Math.ceil(bili) + '%'
+          _this.volumeCurrentPer = Math.ceil(bili)
+          Media.volume = newL / cha
+          _this.MediaVolume = Media.volume
+          return false //取消默认事件
+        }
+        window.onmouseup = function (ev) {
+          let e = ev || window.event //兼容性
+          window.onmousemove = false //解绑移动事件
+          return false
+        }
+        return false
+      },
     }
   }
 

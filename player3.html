@@ -114,6 +114,7 @@
         if (newL >= cha) {
           newL = cha
         }
+        // console.log('newL', newL)
         // 改变left值
         box.style.left = newL + 'px'
         // 计算比例
@@ -139,7 +140,7 @@
       box.style.left = left + 'px'
       let bili = left / cha * 100
       p.innerHTML = '当前位置' + Math.ceil(bili) + '%'
-      console.log(left)
+      console.log('left', left)
       return false
     }
 

@@ -267,11 +267,11 @@
             class="icon_txt">打开纯净模式[C]</span></a>
         <!-- <a href="javascript:;" class="btn_big_only btn_big_only--on"><span class="icon_txt">关闭纯净模式</span></a> -->
         <div class="player_progress player_voice" id="voice">
-          <a href="javascript:;" class="btn_big_voice btn_big_voice--no" v-if="!volumeCurrentPer"><span class="icon_txt">打开声音</span></a>
-          <a href="javascript:;" class="btn_big_voice" id="spanmute" title="关闭声音[M]" v-else><span class="icon_txt">关闭声音[M]</span></a>
+          <a href="javascript:;" class="btn_big_voice btn_big_voice--no" v-if="!volumeTrun" @click="changeVolume"><span class="icon_txt">打开声音</span></a>
+          <a href="javascript:;" class="btn_big_voice" id="spanmute" title="关闭声音[M]" v-else @click="changeVolume"><span class="icon_txt">关闭声音[M]</span></a>
           <div class="player_progress__inner" id="spanvolume" title="调节音量 [增大alt+↑][减小alt+↓]" @click.stop.prevent="volumeOnclick($event)">
             <div class="player_progress__play" :style="{width: volumeCurrentPer + '%'}" id="spanvolumebar">
-              <i class="player_progress__dot" @mousedown.stop.prevent='onmousedown($event)' id="spanvolumeop"></i></div>
+              <i class="player_progress__dot progress__dot" @mousedown.stop.prevent='onmousedown($event)' id="spanvolumeop"></i></div>
           </div>
         </div>
       </div>
@@ -313,7 +313,9 @@
         currentPer: 0,
         play_pause: false,
         backgroundImage: '',
-        volumeCurrentPer: 0,
+        volumeCurrentPer: 50,
+        MediaVolume: 0,
+        volumeTrun: true,
         popup_data_detail: false
       }
     },
@@ -378,7 +380,7 @@
         console.log('音频加载完成')
         _this.duration = _this.format(Media.duration)
         _this.duration2 = Media.duration
-        Media.volume = 0
+        Media.volume = 0.5
       });
       Media.addEventListener("ended", function () {
         console.log('音频播放完成')
@@ -388,6 +390,8 @@
       });
       this.backgroundImage =
         `https://y.gtimg.cn/music/photo_new/T002R300x300M000${this.songData.track_info.album.mid}.jpg?max_age=2592000`
+      var box = document.querySelector('#spanvolumeop')
+      box.style.left = 35 + 'px'
     },
     methods: {
       photo_new(mid) {
@@ -436,6 +440,16 @@
         }
         this.play_pause = !this.play_pause
       },
+      // 静音和打开声音
+      changeVolume () {
+        const Media = document.getElementById("h5audio_media")
+        if (this.volumeTrun) {
+          Media.volume = 0
+        } else {
+          Media.volume = this.MediaVolume
+        }
+        this.volumeTrun = !this.volumeTrun
+      },
       // 音量调节
       onmousedown(ev) {
         const Media = document.getElementById("h5audio_media");
@@ -466,6 +480,7 @@
           // p.innerHTML = '当前位置' + Math.ceil(bili) + '%'
           _this.volumeCurrentPer = Math.ceil(bili)
           Media.volume = newL / cha
+          _this.MediaVolume = Media.volume
           e.stopPropagation()
           e.preventDefault()
           e.cancelBubble = true
@@ -506,6 +521,7 @@
         return false
       },
       volumeOnclick (event) {
+        // console.log('event', event)
         // const Media = document.getElementById("h5audio_media");
         // const events = event || window.event
         // let offsetX = events.offsetX
